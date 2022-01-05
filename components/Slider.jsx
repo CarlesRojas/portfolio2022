@@ -1,31 +1,14 @@
 import { useEffect, useRef, useState, useContext, memo } from "react";
 import useClass from "../hooks/useClass";
-import useFocus from "../hooks/useFocus";
 import SVG from "react-inlinesvg";
 import cx from "classnames";
 import SliderElem from "./SliderElem";
 import { Utils } from "../contexts/Utils";
 import { MediaQuery } from "../contexts/MediaQuery";
-import { Fragment } from "react/cjs/react.production.min";
 
-const NAME = "slider";
-
-const Slider = memo(({ index, parentID, elements, title }) => {
+const Slider = memo(({ elements, title }) => {
     const { clamp } = useContext(Utils);
     const { media } = useContext(MediaQuery);
-
-    // #################################################
-    //   FOCUS MANAGEMENT
-    // #################################################
-
-    const newID = `${parentID}-${NAME}-${index}`;
-    const newObject = {
-        id: newID,
-        parent: parentID,
-        orientation: "horizontal",
-        children: [],
-    };
-    const treeUpdated = useFocus(newID, newObject, parentID);
 
     // #################################################
     //   RESIZE
@@ -61,21 +44,26 @@ const Slider = memo(({ index, parentID, elements, title }) => {
     }, [elemWidth]);
 
     const next = () => {
+        console.log("mmm");
         setIndexesInView(({ min }) => {
             let newMin = min + elemsInScreen.current;
             let newMax = newMin + elemsInScreen.current;
+
+            console.log(newMin, newMax);
 
             if (newMax >= elements.length) {
                 newMax = elements.length - 1;
                 newMin = newMax - elemsInScreen.current;
             }
+            console.log(newMin, newMax);
+            console.log("");
 
             return { min: newMin, max: newMax };
         });
     };
 
     const prev = () => {
-        setIndexesInView(({ min, max }) => {
+        setIndexesInView(({ min }) => {
             let newMin = Math.max(0, min - elemsInScreen.current);
             let newMax = newMin + elemsInScreen.current;
 
@@ -86,35 +74,34 @@ const Slider = memo(({ index, parentID, elements, title }) => {
     // #################################################
     //   RENDER
     // #################################################
+    console.log(indexesInView.min);
 
     return (
         <section className={useClass("slider")} ref={sliderRef}>
             <h1 className={useClass()}>{title}</h1>
 
-            {treeUpdated && (
-                <Fragment>
-                    <div className="container">
-                        {elements.map((data, i) => (
-                            <SliderElem
-                                key={i}
-                                parentID={newID}
-                                data={data}
-                                width={elemWidth}
-                                elemsInScreen={elemsInScreen.current}
-                                index={i}
-                            />
-                        ))}
-                    </div>
+            <div className="container">
+                {elements.map((data, i) => (
+                    <SliderElem key={i} data={data} width={elemWidth} elemsInScreen={elemsInScreen.current} index={i} />
+                ))}
+            </div>
 
-                    <div className={cx("prev", { visible: indexesInView.min > 0 })}>
-                        <SVG className="icon" src={"/icons/prev.svg"} onClick={next} />
-                    </div>
+            <div className={cx("prevNextButton", { visible: indexesInView.min > 0 })}>
+                <h1 className={useClass("invisible")}>a</h1>
+                <div className={cx("iconContainer", { visible: indexesInView.min > 0 })} onClick={prev}>
+                    <SVG className="icon" src={"/icons/prev.svg"} />
+                </div>
+            </div>
 
-                    <div className={cx("next", { visible: indexesInView.max < elements.length - 1 })}>
-                        <SVG className="icon" src={"/icons/next.svg"} onClick={prev} />
-                    </div>
-                </Fragment>
-            )}
+            <div className={cx("prevNextButton", "next", { visible: indexesInView.max < elements.length - 1 })}>
+                <h1 className={useClass("invisible")}>a</h1>{" "}
+                <div
+                    className={cx("iconContainer", { visible: indexesInView.max < elements.length - 1 })}
+                    onClick={next}
+                >
+                    <SVG className="icon" src={"/icons/next.svg"} />
+                </div>
+            </div>
         </section>
     );
 });
