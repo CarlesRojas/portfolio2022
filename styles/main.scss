@@ -6,6 +6,7 @@
     height: 100%;
     width: 100%;
     padding: 1rem;
+    overflow-y: auto;
 
     &.isDesktop,
     &.isTablet {
@@ -18,16 +19,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
-    height: 60%;
+    height: 75%;
     box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
     background-color: $backgroundCloser;
     border-radius: $borderRadius;
     padding: 1rem;
-
-    &.collapsed {
-    }
 
     &.isDesktop,
     &.isTablet {
@@ -134,6 +132,33 @@
 
         img {
             object-fit: contain;
+        }
+    }
+}
+
+.slider {
+    width: 100%;
+    height: 10rem;
+    background-color: rgba(238, 130, 238, 0.164);
+    margin-top: 2rem;
+
+    &.isDesktop,
+    &.isTablet {
+        margin-top: 3rem;
+    }
+
+    h1 {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+
+        &.isTablet {
+            font-size: 1rem;
+        }
+
+        &.isDesktop {
+            font-size: 1.1rem;
         }
     }
 }

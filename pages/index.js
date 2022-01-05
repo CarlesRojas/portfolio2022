@@ -2,8 +2,12 @@ import { Fragment } from "react";
 import Head from "next/head";
 import useClass from "../hooks/useClass";
 import Header from "../components/Header";
+import Slider from "../components/Slider";
+import { Projects } from "../contexts/Projects";
 
 export default function Home() {
+    const { webDev } = useContext(Projects);
+
     return (
         <Fragment>
             <Head>
@@ -29,6 +33,9 @@ export default function Home() {
 
             <main className={useClass("home")}>
                 <Header />
+                <Slider elements={webDev.current} title="Web Development" />
+                <Slider elements={webDev.current} title="Game Development" />
+                <Slider elements={webDev.current} title="Product Design" />
             </main>
         </Fragment>
     );
