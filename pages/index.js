@@ -4,8 +4,6 @@ import useClass from "../hooks/useClass";
 import Header from "../components/Header";
 
 export default function Home() {
-    console.log("Render Home");
-
     return (
         <Fragment>
             <Head>
