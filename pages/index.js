@@ -1,12 +1,28 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import Head from "next/head";
 import useClass from "../hooks/useClass";
 import Header from "../components/Header";
 import Slider from "../components/Slider";
+import useFocus from "../hooks/useFocus";
 import { Projects } from "../contexts/Projects";
+
+const NAME = "home";
 
 export default function Home() {
     const { webDev } = useContext(Projects);
+
+    // #######################################
+    //      FOCUS MANAGEMENT
+    // #######################################
+
+    const newID = NAME;
+    const newObject = {
+        id: NAME,
+        orientation: "vertical",
+        isIndexAlign: true,
+        children: [],
+    };
+    const treeUpdated = useFocus(newID, newObject);
 
     return (
         <Fragment>
@@ -33,9 +49,13 @@ export default function Home() {
 
             <main className={useClass("home")}>
                 <Header />
-                <Slider elements={webDev.current} title="Web Development" />
-                <Slider elements={webDev.current} title="Game Development" />
-                <Slider elements={webDev.current} title="Product Design" />
+                {treeUpdated && (
+                    <Fragment>
+                        <Slider elements={webDev.current} title="Web Development" parentID={newID} index={0} />
+                        <Slider elements={webDev.current} title="Game Development" parentID={newID} index={1} />
+                        <Slider elements={webDev.current} title="Product Design" parentID={newID} index={2} />
+                    </Fragment>
+                )}
             </main>
         </Fragment>
     );
