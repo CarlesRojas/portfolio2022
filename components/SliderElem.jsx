@@ -1,4 +1,5 @@
 import { useState, memo } from "react";
+import useClass from "../hooks/useClass";
 import Image from "next/image";
 import cx from "classnames";
 
@@ -19,7 +20,7 @@ const SliderElem = memo(({ index, elemsInScreen, data, width }) => {
         <div className={"sliderElem"} style={{ width: `${width}px` }}>
             <div className="aspectRatio">
                 <div
-                    className={cx("container", { outside: index >= elemsInScreen }, { focused })}
+                    className={useClass(cx("elemContainer", { outside: index >= elemsInScreen }, { focused }))}
                     onClick={handleClick}
                     onMouseEnter={() => setFocused(true)}
                     onMouseLeave={() => setFocused(false)}

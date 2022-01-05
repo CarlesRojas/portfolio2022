@@ -3,8 +3,11 @@ import useClass from "../hooks/useClass";
 import SVG from "react-inlinesvg";
 import cx from "classnames";
 import SliderElem from "./SliderElem";
+import { useSpring, animated } from "react-spring";
+import { useDrag } from "react-use-gesture";
 import { Utils } from "../contexts/Utils";
 import { MediaQuery } from "../contexts/MediaQuery";
+import { Fragment } from "react/cjs/react.production.min";
 
 const Slider = memo(({ elements, title }) => {
     const { clamp } = useContext(Utils);
@@ -15,14 +18,15 @@ const Slider = memo(({ elements, title }) => {
     // #################################################
 
     const sliderRef = useRef();
+    const sliderWidth = useRef();
     const elemsInScreen = useRef();
     const [elemWidth, setElemWidth] = useState(0);
 
     useEffect(() => {
         const onResize = () => {
-            const sliderWidth = window.innerWidth - (media.isMobile ? 2 * 18 : 6 * 18);
-            elemsInScreen.current = clamp(Math.floor(sliderWidth / 350), 1, 5);
-            setElemWidth(sliderWidth / elemsInScreen.current);
+            sliderWidth.current = window.innerWidth - (media.isMobile ? 2 * 18 : 6 * 18);
+            elemsInScreen.current = clamp(Math.floor(sliderWidth.current / 350), 1, 5);
+            setElemWidth(sliderWidth.current / elemsInScreen.current);
         };
 
         window.addEventListener("resize", onResize);
@@ -44,7 +48,6 @@ const Slider = memo(({ elements, title }) => {
     }, [elemWidth]);
 
     const next = () => {
-        console.log("mmm");
         setIndexesInView(({ min }) => {
             let newMin = min + elemsInScreen.current;
             let newMax = newMin + elemsInScreen.current;
@@ -71,37 +74,87 @@ const Slider = memo(({ elements, title }) => {
         });
     };
 
+    const [{ x }, spring] = useSpring(() => ({ x: "0px" }));
+
+    // #################################################
+    //   GESTURE
+    // #################################################
+
+    const containerRef = useRef();
+
+    // Vertical gesture
+    const gestureBind = useDrag(
+        ({ first, event, down, vxvy: [vx], offset: [ox] }) => {
+            // Stop event propagation
+            event.stopPropagation();
+            if (first) console.log(containerRef.current.getBoundingClientRect().width);
+
+            if (!down) {
+                if (vx > 1) next();
+                else if (vx < -1) prev();
+                console.log("DOWN");
+            }
+
+            // Update the position while the gesture is active
+            else {
+                console.log(ox);
+                spring.start({ x: `${ox}px` });
+            }
+        },
+        {
+            filterTaps: true,
+            axis: "x",
+            bounds: {
+                right: 0,
+                left: containerRef.current
+                    ? -containerRef.current.getBoundingClientRect().width + sliderWidth.current
+                    : 0,
+            },
+        }
+    );
+
     // #################################################
     //   RENDER
     // #################################################
-    console.log(indexesInView.min);
 
     return (
         <section className={useClass("slider")} ref={sliderRef}>
             <h1 className={useClass()}>{title}</h1>
 
-            <div className="container">
-                {elements.map((data, i) => (
-                    <SliderElem key={i} data={data} width={elemWidth} elemsInScreen={elemsInScreen.current} index={i} />
-                ))}
+            <div className={useClass("scroll")}>
+                <animated.div className={useClass("container")} {...gestureBind()} style={{ x }} ref={containerRef}>
+                    {elements.map((data, i) => (
+                        <SliderElem
+                            key={i}
+                            data={data}
+                            width={elemWidth}
+                            elemsInScreen={elemsInScreen.current}
+                            index={i}
+                        />
+                    ))}
+                </animated.div>
             </div>
 
-            <div className={cx("prevNextButton", { visible: indexesInView.min > 0 })}>
-                <h1 className={useClass("invisible")}>a</h1>
-                <div className={cx("iconContainer", { visible: indexesInView.min > 0 })} onClick={prev}>
-                    <SVG className="icon" src={"/icons/prev.svg"} />
-                </div>
-            </div>
+            {!media.isTouchScreen && (
+                <Fragment>
+                    <div className={cx("prevNextButton", { visible: indexesInView.min > 0 })}>
+                        <h1 className="invisible">a</h1>
+                        <div className={cx("iconContainer", { visible: indexesInView.min > 0 })} onClick={prev}>
+                            <SVG className="icon" src={"/icons/prev.svg"} />
+                        </div>
+                    </div>
 
-            <div className={cx("prevNextButton", "next", { visible: indexesInView.max < elements.length - 1 })}>
-                <h1 className={useClass("invisible")}>a</h1>{" "}
-                <div
-                    className={cx("iconContainer", { visible: indexesInView.max < elements.length - 1 })}
-                    onClick={next}
-                >
-                    <SVG className="icon" src={"/icons/next.svg"} />
-                </div>
-            </div>
+                    <div className={cx("prevNextButton", "next", { visible: indexesInView.max < elements.length - 1 })}>
+                        <h1 className="invisible">a</h1>{" "}
+                        <div
+                            className={cx("iconContainer", { visible: indexesInView.max < elements.length - 1 })}
+                            onClick={next}
+                        >
+                            <SVG className="icon" src={"/icons/next.svg"} />
+                        </div>
+                    </div>
+                </Fragment>
+            )}
         </section>
     );
 });

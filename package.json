@@ -12,6 +12,7 @@
         "lrud": "^8.0.0",
         "next": "12.0.7",
         "react": "17.0.2",
+        "react-device-detect": "^2.1.2",
         "react-dom": "17.0.2",
         "react-inlinesvg": "^2.3.0",
         "react-responsive": "^9.0.0-beta.5",

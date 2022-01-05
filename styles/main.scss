@@ -21,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 75%;
+    height: 60%;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
     background-color: $backgroundCloser;
@@ -30,6 +30,7 @@
 
     &.isDesktop,
     &.isTablet {
+        height: 70%;
         padding: 2rem;
     }
 
@@ -171,11 +172,22 @@
         }
     }
 
-    .container {
+    .scroll {
         position: relative;
-        display: flex;
-        width: fit-content;
-        overflow-x: visible;
+        width: 100%;
+        overflow: visible;
+        // overflow-x: auto;
+
+        // &.isDesktop {
+        //     overflow: visible;
+        //     overflow-x: unset;
+        // }
+
+        .container {
+            position: relative;
+            display: flex;
+            width: fit-content;
+        }
     }
 
     .prevNextButton {
@@ -248,30 +260,37 @@
         right: $gap;
         bottom: 0;
         left: 0;
-    }
 
-    .container {
-        position: relative;
-        transition: transform 0.1s ease-in-out;
-        transform: scale(1);
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
-        background-color: $backgroundCloser;
-        border-radius: $borderRadius;
+        .elemContainer {
+            position: relative;
+            transition: transform 0.1s ease-in-out;
+            transform: scale(1);
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
+            background-color: $backgroundCloser;
+            border-radius: $borderRadius;
 
-        &.outside {
-            pointer-events: none;
-            filter: brightness(0.2);
-        }
+            &.isTouchScreen {
+                &.focused {
+                    transform: scale(1);
+                }
+            }
 
-        &.focused {
-            transform: scale(1.05);
-        }
+            &.outside {
+                pointer-events: none;
+                filter: brightness(0.2);
+            }
 
-        img {
-            object-fit: cover;
+            &.focused {
+                transform: scale(1.05);
+            }
+
+            img {
+                object-fit: cover;
+                pointer-events: none;
+            }
         }
     }
 }
