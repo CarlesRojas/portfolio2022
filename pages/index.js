@@ -1,20 +1,20 @@
 import { Fragment } from "react";
-import Link from "next/link";
 import Head from "next/head";
-import { useSpring, animated } from "react-spring";
+import useClass from "../hooks/useClass";
+import Header from "../components/Header";
 
 export default function Home() {
-    const [{ opacity }, spring] = useSpring(() => ({ opacity: "1" }));
+    console.log("Render Home");
 
     return (
         <Fragment>
             <Head>
-                <meta charset="utf-8" />
+                <meta charSet="utf-8" />
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"
                 />
-                <meta name="theme-color" content="#000000" />
+                <meta name="theme-color" content="#131520" />
                 <meta name="description" content="A showcase of different projects I've been involved in." />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-title" content="Carles Rojas - Portfolio" />
@@ -29,13 +29,9 @@ export default function Home() {
                 <title>Carles Rojas - Portfolio</title>
             </Head>
 
-            <div>
-                <h1>Home</h1>
-                <div onClick={() => spring.start({ opacity: "1" })}>Show</div>
-                <div onClick={() => spring.start({ opacity: "0" })}>Hide</div>
-                <animated.div style={{ opacity, backgroundColor: "red", padding: "2rem" }}>Content</animated.div>
-                <Link href="/MatchEat">MatchEat</Link>
-            </div>
+            <main className={useClass("home")}>
+                <Header />
+            </main>
         </Fragment>
     );
 }
