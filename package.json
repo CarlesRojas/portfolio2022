@@ -3,9 +3,9 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
+        "build": "next build && next export",
         "start": "next start",
-        "lint": "next lint"
+        "static": "serve ./out"
     },
     "dependencies": {
         "autoprefixer": "^10.4.1",
