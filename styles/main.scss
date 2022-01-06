@@ -145,6 +145,7 @@
     flex-direction: column;
     width: 100%;
     margin-top: 2rem;
+    touch-action: none;
 
     &.isDesktop,
     &.isTablet {
@@ -184,6 +185,7 @@
     $gap: 1.5rem;
     position: relative;
     padding-right: $gap;
+    touch-action: none;
 
     &::before {
         display: inline-block;
@@ -198,6 +200,7 @@
         right: $gap;
         bottom: 0;
         left: 0;
+        touch-action: none;
 
         .elemContainer {
             position: relative;
@@ -210,6 +213,7 @@
             background-color: $backgroundCloser;
             border-radius: $borderRadius;
             cursor: pointer;
+            touch-action: none;
 
             &.isTouchScreen {
                 &.focused {
