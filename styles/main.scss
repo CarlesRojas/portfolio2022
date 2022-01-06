@@ -122,6 +122,8 @@
         position: relative;
         height: 70%;
         width: 100%;
+        mix-blend-mode: luminosity;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
 
         &.isLandscape {
             height: 100%;
@@ -146,6 +148,16 @@
     width: 100%;
     margin-top: 2rem;
 
+    &.isTouchScreen {
+        width: 100vw;
+        transform: translateX(-1rem);
+
+        &.isDesktop,
+        &.isTablet {
+            transform: translateX(-3rem);
+        }
+    }
+
     &.isDesktop,
     &.isTablet {
         margin-top: 3rem;
@@ -157,13 +169,22 @@
         font-size: 0.8rem;
         font-weight: 500;
 
-        &.isTablet {
-            font-size: 0.9rem;
+        &.isTouchScreen {
+            margin-left: 1rem;
+
+            &.isDesktop,
+            &.isTablet {
+                margin-left: 3rem;
+            }
         }
 
         &.invisible {
             pointer-events: none;
             opacity: 0;
+        }
+
+        &.isTablet {
+            font-size: 0.9rem;
         }
 
         &.isDesktop {
@@ -176,6 +197,15 @@
         overflow-x: auto;
         pointer-events: all;
         touch-action: pan-x pan-y;
+
+        &.isTouchScreen {
+            padding: 0 calc(1rem - #{$gapMobile}) 0 1rem;
+
+            &.isDesktop,
+            &.isTablet {
+                padding: 0 calc(3rem - #{$gap}) 0 3rem;
+            }
+        }
 
         .touchContainer {
             display: flex;
@@ -193,9 +223,13 @@
 }
 
 .sliderElem {
-    $gap: 1.5rem;
     position: relative;
-    padding-right: $gap;
+    padding-right: $gapMobile;
+
+    &.isDesktop,
+    &.isTablet {
+        padding-right: $gap;
+    }
 
     &::before {
         display: inline-block;
@@ -207,9 +241,14 @@
     .aspectRatio {
         position: absolute;
         top: 0;
-        right: $gap;
+        right: $gapMobile;
         bottom: 0;
         left: 0;
+
+        &.isDesktop,
+        &.isTablet {
+            right: $gap;
+        }
 
         .elemContainer {
             position: relative;

@@ -19,8 +19,8 @@ const SliderElem = memo(({ data, width }) => {
     const queryClasses = useQueryClasses();
 
     return (
-        <div className={"sliderElem"} style={{ width: `${width}px` }}>
-            <div className="aspectRatio">
+        <div className={cx("sliderElem", queryClasses)} style={{ width: `${width}px` }}>
+            <div className={cx("aspectRatio", queryClasses)}>
                 <div
                     className={cx("elemContainer", { focused }, queryClasses)}
                     onClick={handleClick}
