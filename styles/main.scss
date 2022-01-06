@@ -209,6 +209,7 @@
             box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
             background-color: $backgroundCloser;
             border-radius: $borderRadius;
+            cursor: pointer;
 
             &.isTouchScreen {
                 &.focused {

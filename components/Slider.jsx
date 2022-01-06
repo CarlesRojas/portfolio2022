@@ -20,7 +20,16 @@ const Slider = memo(({ elems, title }) => {
     //   SPRING
     // #################################################
 
-    const [{ x }, spring] = useSpring(() => ({ x: 0 }));
+    const handleRest = ({ value }) => {
+        const currIndex = Math.floor(Math.abs(value.x) / elemWidthRef.current);
+        setMin(currIndex);
+    };
+
+    const [{ x }, spring] = useSpring(() => ({
+        x: 0,
+        onRest: handleRest,
+        config: { tension: media.isTouchScreen ? 500 : 170, friction: media.isTouchScreen ? 150 : 26 },
+    }));
     const [min, setMin] = useState(0);
 
     const prev = () => {

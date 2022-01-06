@@ -34,8 +34,8 @@ export default function Home() {
             <main className={useClass("home")}>
                 <Header />
                 <Slider elems={webDev.current} title="Web Development" />
-                {/* <Slider elems={webDev.current} title="Game Development" />
-                <Slider elems={webDev.current} title="Product Design" /> */}
+                <Slider elems={webDev.current} title="Game Development" />
+                <Slider elems={webDev.current} title="Product Design" />
             </main>
         </Fragment>
     );
