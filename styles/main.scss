@@ -376,12 +376,12 @@
     left: 0;
 
     .background {
+        pointer-events: none;
         position: absolute;
         height: 100%;
         width: 100%;
         top: 0;
         left: 0;
-        pointer-events: none;
 
         &.visible {
             pointer-events: all;
@@ -391,11 +391,11 @@
     .contentContainer {
         pointer-events: all;
         position: relative;
-        height: 100%;
-        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100%;
+        width: 100%;
     }
 }
 
@@ -404,24 +404,27 @@
 // #######################################
 
 .profile {
+    pointer-events: all;
+    height: calc(100% - 2rem);
+    max-height: calc(100% - 2rem);
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
     box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
     background-color: $backgroundLevel1;
-    border-radius: $borderRadius;
-    max-width: calc(100% - 2rem);
-    max-height: calc(100% - 2rem);
-    height: fit-content;
-    width: calc(100% - 2rem);
     margin: 1rem;
+    border-radius: $borderRadius;
 
     &.isTablet {
-        max-width: calc(100% - 4rem);
+        height: fit-content;
         max-height: calc(100% - 4rem);
+        max-width: calc(100% - 4rem);
         margin: 2rem;
     }
 
     &.isDesktop {
-        max-width: calc(100% - 6rem);
+        height: fit-content;
         max-height: calc(100% - 6rem);
+        max-width: calc(100% - 6rem);
         margin: 3rem;
     }
 
@@ -430,72 +433,30 @@
         width: fit-content;
     }
 
-    .mobileHorizontalApp {
-    }
+    .mobile {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        padding: 1rem;
 
-    .mobileVerticalApp {
-    }
-
-    .horizontalApp {
-        display: flex;
-        flex-direction: column;
-        max-width: 70rem;
-
-        .top {
+        .scroll {
             display: flex;
-            height: 55%;
-            padding: 1rem;
-
-            &.isTablet {
-                padding: 2rem;
-            }
-
-            &.isDesktop {
-                padding: 3rem;
-            }
-
-            .left {
-                display: flex;
-                flex-direction: column;
-                width: 40%;
-                padding: 1rem;
-
-                &.isTablet {
-                    padding: 2rem;
-                }
-
-                &.isDesktop {
-                    padding: 3rem;
-                }
-            }
-
-            .right {
-                width: 60%;
-                padding: 1rem;
-
-                &.isTablet {
-                    padding: 2rem;
-                }
-
-                &.isDesktop {
-                    padding: 3rem;
-                }
-            }
-        }
-
-        .bottom {
-            height: 45%;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
         }
     }
 
-    .verticalApp {
+    .desktop {
+        position: relative;
         display: flex;
         max-width: 70rem;
 
         .left {
             display: flex;
             flex-direction: column;
-            width: 55%;
+            width: 50%;
             padding: 1rem;
 
             &.isTablet {
@@ -505,52 +466,114 @@
             &.isDesktop {
                 padding: 3rem;
             }
+
+            &.horizontal {
+                width: 45%;
+            }
         }
 
         .right {
-            width: 45%;
+            width: 50%;
+            padding: 1rem;
+
+            &.isTablet {
+                padding: 2rem;
+            }
+
+            &.isDesktop {
+                padding: 3rem;
+            }
+
+            &.horizontal {
+                width: 55%;
+            }
         }
     }
 
     //      GENERAL
     // #######################################
 
+    .close {
+        position: absolute;
+        height: 2.5rem;
+        max-height: 2.5rem;
+        min-height: 2.5rem;
+        width: 2.5rem;
+        max-width: 2.5rem;
+        min-width: 2.5rem;
+        top: 0;
+        right: 0;
+        opacity: 0.5;
+        padding: 0.5rem;
+
+        &.isTablet,
+        &.isDesktop {
+            transition: transform 0.1s ease-in-out;
+            transform: scale(1);
+            height: 3rem;
+            max-height: 3rem;
+            min-height: 3rem;
+            width: 3rem;
+            max-width: 3rem;
+            min-width: 3rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            padding: 0.5rem;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
     .quickInfo {
         display: flex;
-        margin-bottom: 1rem;
-
-        &.isTablet {
-            margin-bottom: 2rem;
-        }
+        margin-bottom: 2rem;
 
         &.isDesktop {
             margin-bottom: 2rem;
         }
 
         .imageContainer {
+            pointer-events: none;
             position: relative;
-            height: 6rem;
-            max-height: 6rem;
-            min-height: 6rem;
-            width: 6rem;
-            max-width: 6rem;
-            min-width: 6rem;
+            height: 4.5rem;
+            max-height: 4.5rem;
+            min-height: 4.5rem;
+            width: 4.5rem;
+            max-width: 4.5rem;
+            min-width: 4.5rem;
             margin-right: 1rem;
+
+            &.isTablet,
+            &.isDesktop {
+                height: 6rem;
+                max-height: 6rem;
+                min-height: 6rem;
+                width: 6rem;
+                max-width: 6rem;
+                min-width: 6rem;
+            }
         }
 
         .titleContainer {
-            height: 6rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            min-height: 4.5rem;
+
+            &.isTablet,
+            &.isDesktop {
+                height: 6rem;
+            }
 
             h1 {
                 margin-bottom: 0.5rem;
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 font-weight: 500;
 
                 &.isTablet {
-                    font-size: 1.5rem;
+                    font-size: 1.4rem;
                 }
 
                 &.isDesktop {
@@ -561,7 +584,7 @@
             h2 {
                 width: 100%;
                 opacity: 0.5;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
                 font-weight: 400;
 
                 &.isTablet {
@@ -579,9 +602,9 @@
 
     .description {
         opacity: 0.8;
-        font-size: 0.7rem;
-        font-weight: 400;
         margin-top: 1rem;
+        font-size: 0.75rem;
+        font-weight: 400;
 
         &.isTablet {
             font-size: 0.8rem;
@@ -598,12 +621,11 @@
 
     .process {
         opacity: 0.3;
-        font-size: 0.7rem;
+        margin: 2rem 0;
+        font-size: 0.75rem;
         font-weight: 400;
-        margin: 1rem 0;
 
         &.isTablet {
-            margin: 2rem 0;
             font-size: 0.8rem;
         }
 
@@ -615,14 +637,10 @@
 
     .linksContainer {
         display: flex;
-        margin-bottom: 1rem;
-
-        &.isTablet {
-            margin-bottom: 2rem;
-        }
+        margin-bottom: 2rem;
 
         &.isDesktop {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .link {
@@ -633,16 +651,16 @@
             width: 3.5rem;
             max-width: 3.5rem;
             min-width: 3.5rem;
-            padding: 0.7rem;
-            margin-right: 1rem;
             box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
             background-color: $backgroundLevel2;
+            margin-right: 1rem;
             border-radius: $borderRadius;
+            padding: 0.7rem;
 
             &:not(.isTouchScreen) {
                 transition: transform 0.1s ease-in-out;
-                cursor: pointer;
                 transform: scale(1);
+                cursor: pointer;
 
                 &:hover {
                     transform: scale(1.1);
@@ -650,6 +668,7 @@
             }
 
             .imageContainer {
+                pointer-events: none;
                 position: relative;
                 height: 100%;
                 width: 100%;
@@ -664,16 +683,16 @@
             width: 8rem;
             max-width: 8rem;
             min-width: 8rem;
-            padding: 0.7rem;
-            margin-right: 1rem;
             box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
             background-color: $backgroundLevelMax;
+            margin-right: 1rem;
             border-radius: $borderRadius;
+            padding: 0.7rem;
 
             &:not(.isTouchScreen) {
                 transition: transform 0.1s ease-in-out;
-                cursor: pointer;
                 transform: scale(1);
+                cursor: pointer;
 
                 &:hover {
                     transform: scale(1.06);
@@ -681,6 +700,7 @@
             }
 
             .imageContainer {
+                pointer-events: none;
                 position: relative;
                 height: 100%;
                 width: 100%;

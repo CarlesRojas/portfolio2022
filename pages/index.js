@@ -50,7 +50,7 @@ export default function Home() {
                 <Slider elems={webDev.current} title="Product Design" onElemClick={handleElemClicked} />
 
                 <Popup visible={popupVisible} setVisible={setPopupVisible}>
-                    <Profile data={currentPopupData.current} />
+                    <Profile data={currentPopupData.current} setVisible={setPopupVisible} />
                 </Popup>
             </main>
         </Fragment>

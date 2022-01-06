@@ -29,18 +29,12 @@ const Popup = memo(({ children, visible, setVisible }) => {
         <div className="popup">
             {backgroundTransition(
                 (styles, item) =>
-                    item && (
-                        <animated.div
-                            className={cx("background", { visible })}
-                            style={styles}
-                            onClick={() => setVisible(false)}
-                        ></animated.div>
-                    )
+                    item && <animated.div className={cx("background", { visible })} style={styles}></animated.div>
             )}
             {contentTransition(
                 (styles, item) =>
                     item && (
-                        <animated.div className="contentContainer" style={styles}>
+                        <animated.div className="contentContainer" style={styles} onClick={() => setVisible(false)}>
                             {children}
                         </animated.div>
                     )

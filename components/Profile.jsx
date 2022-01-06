@@ -6,7 +6,7 @@ import cx from "classnames";
 import SVG from "react-inlinesvg";
 import dynamic from "next/dynamic";
 
-const Profile = memo(({ data }) => {
+const Profile = memo(({ data, setVisible }) => {
     const { media } = useContext(MediaQuery);
     const { title, icon, subtitle, description, links, qr, video, screenshots, horizontal, process } = data;
 
@@ -16,6 +16,10 @@ const Profile = memo(({ data }) => {
     // #################################################
     //   ELEMS
     // #################################################
+
+    const close = (
+        <SVG className={cx("close", queryClasses)} src={"/icons/close.svg"} onClick={() => setVisible(false)} />
+    );
 
     const quickInfoDOM = icon && title && subtitle && (
         <div className={cx("quickInfo", queryClasses)}>
@@ -65,51 +69,40 @@ const Profile = memo(({ data }) => {
     // #################################################
 
     return (
-        <div className={cx("profile", queryClasses)}>
-            {media.isMobile && deleteHorizontal && (
-                <div className={cx("mobileHorizontalApp", queryClasses)}>{title}</div>
-            )}
+        <div className={cx("profile", queryClasses)} onClick={(e) => e.stopPropagation()}>
+            {media.isMobile && (
+                <div className={cx("mobile", queryClasses)}>
+                    {close}
 
-            {media.isMobile && !deleteHorizontal && (
-                <div className={cx("mobileVerticalApp", queryClasses)}>{title}</div>
-            )}
-
-            {!media.isMobile && deleteHorizontal && (
-                <div className={cx("horizontalApp", queryClasses)}>
-                    <div className="top">
-                        <div className={cx("left", queryClasses)}>
-                            {quickInfoDOM}
-
-                            <div className={cx("linksContainer", queryClasses)}>
-                                {qrDOM}
-                                {linksDOM}
-                            </div>
-                        </div>
-
-                        <div className={cx("right", queryClasses)}>
-                            {descriptionDOM}
-                            {processDOM}
-                        </div>
-                    </div>
-
-                    <div className="bottom"></div>
-                </div>
-            )}
-
-            {!media.isMobile && !deleteHorizontal && (
-                <div className={cx("verticalApp", queryClasses)}>
-                    <div className={cx("left", queryClasses)}>
+                    <div className="scroll">
                         {quickInfoDOM}
                         {descriptionDOM}
                         {processDOM}
 
                         <div className={cx("linksContainer", queryClasses)}>
-                            {linksDOM}
                             {qrDOM}
+                            {linksDOM}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {!media.isMobile && (
+                <div className={cx("desktop", queryClasses)}>
+                    {close}
+
+                    <div className={cx("left", { horizontal: deleteHorizontal }, queryClasses)}>
+                        {quickInfoDOM}
+                        {descriptionDOM}
+                        {processDOM}
+
+                        <div className={cx("linksContainer", queryClasses)}>
+                            {qrDOM}
+                            {linksDOM}
                         </div>
                     </div>
 
-                    <div className={cx("right", queryClasses)}></div>
+                    <div className={cx("right", { horizontal: deleteHorizontal }, queryClasses)}></div>
                 </div>
             )}
         </div>
