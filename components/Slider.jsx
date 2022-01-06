@@ -28,8 +28,6 @@ const Slider = memo(({ elems, title }) => {
     const [{ x }, spring] = useSpring(() => ({
         x: 0,
         onRest: handleRest,
-        config: { frequency: 0.5, damping: 1 },
-        // config: { tension: media.isTouchScreen ? 500 : 170, friction: media.isTouchScreen ? 150 : 26 },
     }));
     const [min, setMin] = useState(0);
 
@@ -70,7 +68,6 @@ const Slider = memo(({ elems, title }) => {
             }
         },
         {
-            preventDefault: true,
             filterTaps: true,
             axis: "x",
         }
