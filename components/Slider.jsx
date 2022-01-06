@@ -9,7 +9,7 @@ import { Utils } from "../contexts/Utils";
 import { MediaQuery } from "../contexts/MediaQuery";
 import { Fragment } from "react/cjs/react.production.min";
 
-const Slider = memo(({ elements, title }) => {
+const Slider = memo(({ elems, title }) => {
     const { clamp } = useContext(Utils);
     const { media } = useContext(MediaQuery);
 
@@ -41,40 +41,22 @@ const Slider = memo(({ elements, title }) => {
     //   SLIDE
     // #################################################
 
-    const [indexesInView, setIndexesInView] = useState({ min: 0, max: elemsInScreen.current });
+    const [{ x }, spring] = useSpring(() => ({ x: "0px" }));
+    const [, setMinMax] = useState({ min: 0, max: elemsInScreen.current - 1 });
 
     useEffect(() => {
-        setIndexesInView((prev) => ({ ...prev, max: prev.min + elemsInScreen.current }));
-    }, [elemWidth]);
+        setMinMax((prev) => {
+            const newMin = prev.min;
+            const newMax = newMin + elemsInScreen.current - 1;
 
-    const next = () => {
-        setIndexesInView(({ min }) => {
-            let newMin = min + elemsInScreen.current;
-            let newMax = newMin + elemsInScreen.current;
-
-            console.log(newMin, newMax);
-
-            if (newMax >= elements.length) {
-                newMax = elements.length - 1;
-                newMin = newMax - elemsInScreen.current;
+            if (newMax >= elems.length) {
+                newMax = elems.length - 1;
+                newMin = newMax - elemsInScreen.current + 1;
             }
-            console.log(newMin, newMax);
-            console.log("");
 
             return { min: newMin, max: newMax };
         });
-    };
-
-    const prev = () => {
-        setIndexesInView(({ min }) => {
-            let newMin = Math.max(0, min - elemsInScreen.current);
-            let newMax = newMin + elemsInScreen.current;
-
-            return { min: newMin, max: newMax };
-        });
-    };
-
-    const [{ x }, spring] = useSpring(() => ({ x: "0px" }));
+    }, [elemWidth, spring, elems]);
 
     // #################################################
     //   GESTURE
@@ -84,20 +66,10 @@ const Slider = memo(({ elements, title }) => {
 
     // Vertical gesture
     const gestureBind = useDrag(
-        ({ first, event, down, vxvy: [vx], offset: [ox] }) => {
-            // Stop event propagation
+        ({ event, down, offset: [ox] }) => {
             event.stopPropagation();
-            if (first) console.log(containerRef.current.getBoundingClientRect().width);
 
-            if (!down) {
-                if (vx > 1) next();
-                else if (vx < -1) prev();
-                console.log("DOWN");
-            }
-
-            // Update the position while the gesture is active
-            else {
-                console.log(ox);
+            if (down) {
                 spring.start({ x: `${ox}px` });
             }
         },
@@ -108,7 +80,7 @@ const Slider = memo(({ elements, title }) => {
                 right: 0,
                 left: containerRef.current
                     ? -containerRef.current.getBoundingClientRect().width + sliderWidth.current
-                    : 0,
+                    : sliderWidth.current,
             },
         }
     );
@@ -123,38 +95,11 @@ const Slider = memo(({ elements, title }) => {
 
             <div className={useClass("scroll")}>
                 <animated.div className={useClass("container")} {...gestureBind()} style={{ x }} ref={containerRef}>
-                    {elements.map((data, i) => (
-                        <SliderElem
-                            key={i}
-                            data={data}
-                            width={elemWidth}
-                            elemsInScreen={elemsInScreen.current}
-                            index={i}
-                        />
+                    {elems.map((data, i) => (
+                        <SliderElem key={i} data={data} width={elemWidth} />
                     ))}
                 </animated.div>
             </div>
-
-            {!media.isTouchScreen && (
-                <Fragment>
-                    <div className={cx("prevNextButton", { visible: indexesInView.min > 0 })}>
-                        <h1 className="invisible">a</h1>
-                        <div className={cx("iconContainer", { visible: indexesInView.min > 0 })} onClick={prev}>
-                            <SVG className="icon" src={"/icons/prev.svg"} />
-                        </div>
-                    </div>
-
-                    <div className={cx("prevNextButton", "next", { visible: indexesInView.max < elements.length - 1 })}>
-                        <h1 className="invisible">a</h1>{" "}
-                        <div
-                            className={cx("iconContainer", { visible: indexesInView.max < elements.length - 1 })}
-                            onClick={next}
-                        >
-                            <SVG className="icon" src={"/icons/next.svg"} />
-                        </div>
-                    </div>
-                </Fragment>
-            )}
         </section>
     );
 });

@@ -139,12 +139,12 @@
 }
 
 .slider {
+    pointer-events: none;
     $iconSize: 3rem;
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
-    overflow-x: visible;
     margin-top: 2rem;
 
     &.isDesktop,
@@ -175,68 +175,13 @@
     .scroll {
         position: relative;
         width: 100%;
-        overflow: visible;
-        // overflow-x: auto;
-
-        // &.isDesktop {
-        //     overflow: visible;
-        //     overflow-x: unset;
-        // }
 
         .container {
+            pointer-events: all;
+            touch-action: none;
             position: relative;
             display: flex;
             width: fit-content;
-        }
-    }
-
-    .prevNextButton {
-        pointer-events: none;
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        transition: opacity 0.1s ease-in-out;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: $iconSize;
-        z-index: 1;
-        opacity: 0;
-        transform: translateX(-$iconSize);
-
-        &.next {
-            left: 100%;
-            transform: translateX(0);
-        }
-
-        &.visible {
-            &:hover {
-                opacity: 1;
-            }
-
-            .iconContainer {
-                pointer-events: all;
-            }
-        }
-
-        .iconContainer {
-            cursor: pointer;
-            pointer-events: none;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-
-            .icon {
-                height: $iconSize;
-                max-height: $iconSize;
-                min-height: $iconSize;
-                width: $iconSize;
-                max-width: $iconSize;
-                min-width: $iconSize;
-                padding: 0.7rem;
-            }
         }
     }
 }
@@ -244,7 +189,6 @@
 .sliderElem {
     $gap: 1.5rem;
     position: relative;
-    overflow: visible;
     padding-right: $gap;
 
     &::before {
@@ -276,11 +220,6 @@
                 &.focused {
                     transform: scale(1);
                 }
-            }
-
-            &.outside {
-                pointer-events: none;
-                filter: brightness(0.2);
             }
 
             &.focused {
