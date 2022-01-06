@@ -5,12 +5,12 @@ import useQueryClasses from "../hooks/useQueryClasses";
 import cx from "classnames";
 import SVG from "react-inlinesvg";
 import dynamic from "next/dynamic";
+import Deck from "./Deck";
 
 const Profile = memo(({ data, setVisible }) => {
     const { media } = useContext(MediaQuery);
     const { title, icon, subtitle, description, links, qr, video, screenshots, horizontal, process } = data;
 
-    var deleteHorizontal = true;
     const queryClasses = useQueryClasses();
 
     // #################################################
@@ -83,6 +83,12 @@ const Profile = memo(({ data, setVisible }) => {
                             {qrDOM}
                             {linksDOM}
                         </div>
+
+                        <div className={cx("deckAspectRatio", { horizontal }, { vertical: !horizontal }, queryClasses)}>
+                            <div className={cx("deckContainer", { horizontal }, queryClasses)}>
+                                <Deck images={screenshots.reverse()} horizontal={horizontal} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
@@ -91,7 +97,7 @@ const Profile = memo(({ data, setVisible }) => {
                 <div className={cx("desktop", queryClasses)}>
                     {close}
 
-                    <div className={cx("left", { horizontal: deleteHorizontal }, queryClasses)}>
+                    <div className={cx("left", { horizontal }, queryClasses)}>
                         {quickInfoDOM}
                         {descriptionDOM}
                         {processDOM}
@@ -102,7 +108,9 @@ const Profile = memo(({ data, setVisible }) => {
                         </div>
                     </div>
 
-                    <div className={cx("right", { horizontal: deleteHorizontal }, queryClasses)}></div>
+                    <div className={cx("right", { horizontal }, queryClasses)}>
+                        <Deck images={screenshots.reverse()} horizontal={horizontal} />
+                    </div>
                 </div>
             )}
         </div>

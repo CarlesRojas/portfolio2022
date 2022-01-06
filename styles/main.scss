@@ -445,11 +445,48 @@
             height: 100%;
             width: 100%;
             overflow-y: auto;
+            overflow-x: visible;
+
+            .deckAspectRatio {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                margin-bottom: 1rem;
+                overflow: visible;
+
+                &.vertical {
+                    &::before {
+                        display: inline-block;
+                        height: 0;
+                        padding-bottom: calc(100% / (0.5625 / 1));
+                        content: "";
+                    }
+                }
+
+                &.horizontal {
+                    &::before {
+                        display: inline-block;
+                        height: 0;
+                        padding-bottom: calc(100% / (1.77 / 1));
+                        content: "";
+                    }
+                }
+
+                .deckContainer {
+                    overflow: visible;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
         }
     }
 
     .desktop {
         position: relative;
+        height: 100%;
         display: flex;
         max-width: 70rem;
 
@@ -474,14 +511,14 @@
 
         .right {
             width: 50%;
-            padding: 1rem;
+            padding: 2.5rem 1rem 1rem 1rem;
 
             &.isTablet {
-                padding: 2rem;
+                padding: 5rem 2rem 2rem 2rem;
             }
 
             &.isDesktop {
-                padding: 3rem;
+                padding: 6rem 3rem 3rem 3rem;
             }
 
             &.horizontal {
@@ -704,6 +741,58 @@
                 position: relative;
                 height: 100%;
                 width: 100%;
+            }
+        }
+    }
+}
+
+// #######################################
+//      DECK
+// #######################################
+
+.deck {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        touch-action: none;
+
+        div {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+
+            span {
+                overflow: visible !important;
+
+                img {
+                    border-radius: $borderRadius;
+                    object-fit: contain;
+                    pointer-events: none;
+
+                    &.vertical {
+                        width: fit-content !important;
+                        min-width: fit-content !important;
+                        max-width: fit-content !important;
+                    }
+                    &.horizontal {
+                        height: fit-content !important;
+                        min-height: fit-content !important;
+                        max-height: fit-content !important;
+                    }
+                }
             }
         }
     }
