@@ -1,15 +1,16 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import cx from "classnames";
 import Head from "next/head";
 import useQueryClasses from "../hooks/useQueryClasses";
 import Header from "../components/Header";
 import Slider from "../components/Slider";
+import Popup from "../components/Popup";
 import { Projects } from "../contexts/Projects";
 
 export default function Home() {
     const { webDev } = useContext(Projects);
-
     const queryClasses = useQueryClasses();
+    const [popupVisible, setPopupVisible] = useState(false);
 
     return (
         <Fragment>
@@ -38,7 +39,11 @@ export default function Home() {
                 <Header />
                 <Slider elems={webDev.current} title="Web Development" />
                 <Slider elems={webDev.current} title="Game Development" />
-                {/* <Slider elems={webDev.current} title="Product Design" /> */}
+                <Slider elems={webDev.current} title="Product Design" />
+
+                <Popup visible={popupVisible} setVisible={setPopupVisible}>
+                    Test
+                </Popup>
             </main>
         </Fragment>
     );

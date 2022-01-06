@@ -1,6 +1,10 @@
 @import "./variables";
 @import "./global";
 
+// #######################################
+//      HOME
+// #######################################
+
 .home {
     position: relative;
     height: 100%;
@@ -15,6 +19,10 @@
     }
 }
 
+// #######################################
+//      HEADER
+// #######################################
+
 .header {
     position: relative;
     display: flex;
@@ -24,7 +32,7 @@
     height: 60%;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
-    background-color: $backgroundCloser;
+    background-color: $backgroundLevel1;
     border-radius: $borderRadius;
     padding: 1rem;
 
@@ -122,8 +130,8 @@
         position: relative;
         height: 70%;
         width: 100%;
-        mix-blend-mode: luminosity;
         filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
+        mix-blend-mode: luminosity;
 
         &.isLandscape {
             height: 100%;
@@ -140,6 +148,10 @@
     }
 }
 
+// #######################################
+//      SLIDER
+// #######################################
+
 .slider {
     pointer-events: none;
     position: relative;
@@ -149,8 +161,8 @@
     margin-top: 2rem;
 
     &.isTouchScreen {
-        width: 100vw;
         transform: translateX(-1rem);
+        width: 100vw;
 
         &.isDesktop,
         &.isTablet {
@@ -193,9 +205,9 @@
     }
 
     .touchScroll {
+        pointer-events: all;
         width: 100%;
         overflow-x: auto;
-        pointer-events: all;
         touch-action: pan-x pan-y;
 
         &.isTouchScreen {
@@ -215,12 +227,16 @@
 
     .container {
         pointer-events: all;
-        touch-action: none;
         position: relative;
         display: flex;
         width: fit-content;
+        touch-action: none;
     }
 }
+
+// #######################################
+//      SLIDER ELEMS
+// #######################################
 
 .sliderElem {
     position: relative;
@@ -257,10 +273,10 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-            box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
-            background-color: $backgroundCloser;
-            border-radius: $borderRadius;
             cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
+            background-color: $backgroundLevel1;
+            border-radius: $borderRadius;
 
             &.isTouchScreen {
                 &.focused {
@@ -273,24 +289,28 @@
             }
 
             img {
-                object-fit: cover;
                 pointer-events: none;
+                object-fit: cover;
             }
         }
     }
 }
 
+// #######################################
+//      SLIDE BUTTONS
+// #######################################
+
 .slideButtons {
     $iconSize: 3rem;
     pointer-events: none;
     position: absolute;
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     top: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    z-index: 1;
 
     .buttonsConteiner {
         position: relative;
@@ -298,24 +318,24 @@
         width: 100%;
 
         .iconContainer {
-            transition: opacity 0.1s ease-in-out;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: $iconSize;
-            cursor: pointer;
             pointer-events: none;
+            position: absolute;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: opacity 0.1s ease-in-out;
             transform: translateX(-$iconSize);
+            width: $iconSize;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            cursor: pointer;
             background-color: rgba(0, 0, 0, 0.4);
             opacity: 0;
 
             &.next {
-                left: 100%;
                 transform: translateX(0);
+                left: 100%;
             }
 
             &.visible {
@@ -337,5 +357,45 @@
                 padding: 0.7rem;
             }
         }
+    }
+}
+
+// #######################################
+//      POPUP
+// #######################################
+
+.popup {
+    pointer-events: none;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .blur {
+        pointer-events: all;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .contentContainer {
+        $margin: 6rem;
+        pointer-events: all;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: calc(100% - #{$margin * 2});
+        width: calc(100% - #{$margin * 2});
+        z-index: 2;
+        box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
+        background-color: $backgroundLevel2;
+        border-radius: $borderRadius;
     }
 }

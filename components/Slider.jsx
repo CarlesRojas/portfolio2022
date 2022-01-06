@@ -147,8 +147,6 @@ const Slider = memo(({ elems, title }) => {
 });
 
 Slider.displayName = "Slider";
-
 export default dynamic(() => Promise.resolve(Slider), {
     ssr: false,
 });
-// export default Slider;
