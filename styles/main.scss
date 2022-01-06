@@ -258,7 +258,7 @@
             align-items: center;
             justify-content: center;
             transform: translateX(-$iconSize);
-            border-radius: $borderRadius;
+            background-color: rgba(0, 0, 0, 0.4);
             opacity: 0;
 
             &.next {
