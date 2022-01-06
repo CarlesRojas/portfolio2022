@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState, useContext, memo } from "react";
+import { useEffect, useRef, useState, useContext, memo, Fragment } from "react";
 import useClass from "../hooks/useClass";
-import SVG from "react-inlinesvg";
-import cx from "classnames";
 import SliderElem from "./SliderElem";
+import SlideButtons from "./SlideButtons";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import { Utils } from "../contexts/Utils";
 import { MediaQuery } from "../contexts/MediaQuery";
-import { Fragment } from "react/cjs/react.production.min";
 
 const Slider = memo(({ elems, title }) => {
     const { clamp } = useContext(Utils);
@@ -76,6 +74,7 @@ const Slider = memo(({ elems, title }) => {
         {
             filterTaps: true,
             axis: "x",
+            from: () => [x.get(), 0],
             bounds: {
                 right: 0,
                 left: containerRef.current
@@ -93,13 +92,13 @@ const Slider = memo(({ elems, title }) => {
         <section className={useClass("slider")} ref={sliderRef}>
             <h1 className={useClass()}>{title}</h1>
 
-            <div className={useClass("scroll")}>
-                <animated.div className={useClass("container")} {...gestureBind()} style={{ x }} ref={containerRef}>
-                    {elems.map((data, i) => (
-                        <SliderElem key={i} data={data} width={elemWidth} />
-                    ))}
-                </animated.div>
-            </div>
+            <animated.div className={useClass("container")} {...gestureBind()} style={{ x }} ref={containerRef}>
+                {elems.map((data, i) => (
+                    <SliderElem key={i} data={data} width={elemWidth} />
+                ))}
+            </animated.div>
+
+            <SlideButtons next={() => {}} prev={() => {}} nextVisible={true} prevVisible={true} />
         </section>
     );
 });
