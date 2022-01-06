@@ -3,14 +3,10 @@ import useQueryClasses from "../hooks/useQueryClasses";
 import Image from "next/image";
 import cx from "classnames";
 
-const SliderElem = memo(({ data, width }) => {
-    const { screenshots, title } = data;
+const SliderElem = memo(({ data, width, onElemClick }) => {
+    const { screenshots } = data;
 
     const [focused, setFocused] = useState(false);
-
-    const handleClick = () => {
-        console.log(`${title} clicked`);
-    };
 
     // #################################################
     //   RENDER
@@ -23,7 +19,7 @@ const SliderElem = memo(({ data, width }) => {
             <div className={cx("aspectRatio", queryClasses)}>
                 <div
                     className={cx("elemContainer", { focused }, queryClasses)}
-                    onClick={handleClick}
+                    onClick={() => onElemClick(data)}
                     onMouseEnter={() => setFocused(true)}
                     onMouseLeave={() => setFocused(false)}
                 >

@@ -9,7 +9,7 @@ import { useDrag } from "react-use-gesture";
 import { Utils } from "../contexts/Utils";
 import { MediaQuery } from "../contexts/MediaQuery";
 
-const Slider = memo(({ elems, title }) => {
+const Slider = memo(({ elems, title, onElemClick }) => {
     const { clamp, debounce } = useContext(Utils);
     const { media } = useContext(MediaQuery);
 
@@ -117,7 +117,7 @@ const Slider = memo(({ elems, title }) => {
                 <div className={cx("touchScroll", queryClasses)}>
                     <div className={cx("touchContainer", queryClasses)}>
                         {elems.map((data, i) => (
-                            <SliderElem key={i} data={data} width={elemWidth} />
+                            <SliderElem key={i} data={data} width={elemWidth} onElemClick={onElemClick} />
                         ))}
                     </div>
                 </div>
@@ -131,7 +131,7 @@ const Slider = memo(({ elems, title }) => {
                     ref={containerRef}
                 >
                     {elems.map((data, i) => (
-                        <SliderElem key={i} data={data} width={elemWidth} />
+                        <SliderElem key={i} data={data} width={elemWidth} onElemClick={onElemClick} />
                     ))}
                 </animated.div>
             )}

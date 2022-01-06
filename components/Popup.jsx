@@ -1,4 +1,5 @@
 import { memo } from "react";
+import cx from "classnames";
 import { useTransition, animated } from "react-spring";
 
 const Popup = memo(({ children, visible, setVisible }) => {
@@ -6,16 +7,16 @@ const Popup = memo(({ children, visible, setVisible }) => {
     //   TRANSITIONS
     // #################################################
 
-    const blurTransition = useTransition(visible, {
-        from: { backgroundColor: "rgba(0, 0, 0, 0)", backdropFilter: "blur(10px) opacity(0)" },
-        enter: { backgroundColor: "rgba(0, 0, 0, 0.3)", backdropFilter: "blur(10px) opacity(1)" },
-        leave: { backgroundColor: "rgba(0, 0, 0, 0)", backdropFilter: "blur(10px) opacity(0)" },
+    const backgroundTransition = useTransition(visible, {
+        from: { backgroundColor: "rgba(30, 33, 44, 0)" },
+        enter: { backgroundColor: "rgba(30, 33, 44, 1)" },
+        leave: { backgroundColor: "rgba(30, 33, 44, 0)", delay: 400 },
         reverse: visible,
     });
 
     const contentTransition = useTransition(visible, {
         from: { translateY: "100vh" },
-        enter: { translateY: "0vh" },
+        enter: { translateY: "0vh", delay: 400 },
         leave: { translateY: "100vh" },
         reverse: visible,
     });
@@ -26,10 +27,14 @@ const Popup = memo(({ children, visible, setVisible }) => {
 
     return (
         <div className="popup">
-            {blurTransition(
+            {backgroundTransition(
                 (styles, item) =>
                     item && (
-                        <animated.div className="blur" style={styles} onClick={() => setVisible(false)}></animated.div>
+                        <animated.div
+                            className={cx("background", { visible })}
+                            style={styles}
+                            onClick={() => setVisible(false)}
+                        ></animated.div>
                     )
             )}
             {contentTransition(

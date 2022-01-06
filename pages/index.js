@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useState, useRef } from "react";
 import cx from "classnames";
 import Head from "next/head";
 import useQueryClasses from "../hooks/useQueryClasses";
@@ -10,7 +10,14 @@ import { Projects } from "../contexts/Projects";
 export default function Home() {
     const { webDev } = useContext(Projects);
     const queryClasses = useQueryClasses();
+
+    const currentPopupData = useRef({});
     const [popupVisible, setPopupVisible] = useState(false);
+
+    const handleElemClicked = (data) => {
+        currentPopupData.current = data;
+        setPopupVisible(true);
+    };
 
     return (
         <Fragment>
@@ -37,12 +44,12 @@ export default function Home() {
 
             <main className={cx("home", queryClasses)}>
                 <Header />
-                <Slider elems={webDev.current} title="Web Development" />
-                <Slider elems={webDev.current} title="Game Development" />
-                <Slider elems={webDev.current} title="Product Design" />
+                <Slider elems={webDev.current} title="Web Development" onElemClick={handleElemClicked} />
+                <Slider elems={webDev.current} title="Game Development" onElemClick={handleElemClicked} />
+                <Slider elems={webDev.current} title="Product Design" onElemClick={handleElemClicked} />
 
                 <Popup visible={popupVisible} setVisible={setPopupVisible}>
-                    Test
+                    {currentPopupData.current.title}
                 </Popup>
             </main>
         </Fragment>
