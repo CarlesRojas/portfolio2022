@@ -1,12 +1,15 @@
 import { Fragment, useContext } from "react";
+import cx from "classnames";
 import Head from "next/head";
-import useClass from "../hooks/useClass";
+import useQueryClasses from "../hooks/useQueryClasses";
 import Header from "../components/Header";
 import Slider from "../components/Slider";
 import { Projects } from "../contexts/Projects";
 
 export default function Home() {
     const { webDev } = useContext(Projects);
+
+    const queryClasses = useQueryClasses();
 
     return (
         <Fragment>
@@ -31,7 +34,7 @@ export default function Home() {
                 <title>Carles Rojas - Portfolio</title>
             </Head>
 
-            <main className={useClass("home")}>
+            <main className={cx("home", queryClasses)}>
                 <Header />
                 <Slider elems={webDev.current} title="Web Development" />
                 <Slider elems={webDev.current} title="Game Development" />

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, useContext, memo, useCallback } from "react";
-import useClass from "../hooks/useClass";
+import dynamic from "next/dynamic";
+import useQueryClasses from "../hooks/useQueryClasses";
+import cx from "classnames";
 import SliderElem from "./SliderElem";
 import SlideButtons from "./SlideButtons";
 import { useSpring, animated } from "react-spring";
@@ -105,15 +107,34 @@ const Slider = memo(({ elems, title }) => {
     //   RENDER
     // #################################################
 
-    return (
-        <section className={useClass("slider")}>
-            <h1 className={useClass()}>{title}</h1>
+    const queryClasses = useQueryClasses();
 
-            <animated.div className={useClass("container")} {...gestureBind()} style={{ x }} ref={containerRef}>
-                {elems.map((data, i) => (
-                    <SliderElem key={i} data={data} width={elemWidth} />
-                ))}
-            </animated.div>
+    return (
+        <section className={cx("slider", queryClasses)}>
+            <h1 className={queryClasses}>{title}</h1>
+
+            {media.isTouchScreen && (
+                <div className={cx("touchScroll", queryClasses)}>
+                    <div className={cx("touchContainer", queryClasses)}>
+                        {elems.map((data, i) => (
+                            <SliderElem key={i} data={data} width={elemWidth} />
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {!media.isTouchScreen && (
+                <animated.div
+                    className={cx("container", queryClasses)}
+                    {...gestureBind()}
+                    style={{ x }}
+                    ref={containerRef}
+                >
+                    {elems.map((data, i) => (
+                        <SliderElem key={i} data={data} width={elemWidth} />
+                    ))}
+                </animated.div>
+            )}
 
             <SlideButtons
                 next={next}
@@ -126,4 +147,8 @@ const Slider = memo(({ elems, title }) => {
 });
 
 Slider.displayName = "Slider";
-export default Slider;
+
+export default dynamic(() => Promise.resolve(Slider), {
+    ssr: false,
+});
+// export default Slider;

@@ -1,5 +1,5 @@
 import { useState, memo } from "react";
-import useClass from "../hooks/useClass";
+import useQueryClasses from "../hooks/useQueryClasses";
 import Image from "next/image";
 import cx from "classnames";
 
@@ -16,11 +16,13 @@ const SliderElem = memo(({ data, width }) => {
     //   RENDER
     // #################################################
 
+    const queryClasses = useQueryClasses();
+
     return (
         <div className={"sliderElem"} style={{ width: `${width}px` }}>
             <div className="aspectRatio">
                 <div
-                    className={useClass(cx("elemContainer", { focused }))}
+                    className={cx("elemContainer", { focused }, queryClasses)}
                     onClick={handleClick}
                     onMouseEnter={() => setFocused(true)}
                     onMouseLeave={() => setFocused(false)}

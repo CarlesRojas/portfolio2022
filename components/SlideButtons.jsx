@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import useClass from "../hooks/useClass";
+import useQueryClasses from "../hooks/useQueryClasses";
 import SVG from "react-inlinesvg";
 import cx from "classnames";
 import { MediaQuery } from "../contexts/MediaQuery";
@@ -7,12 +7,12 @@ import { MediaQuery } from "../contexts/MediaQuery";
 export default function SlideButtons({ next, prev, nextVisible, prevVisible }) {
     const { media } = useContext(MediaQuery);
 
-    const invisibleClass = useClass("invisible");
+    const queryClasses = useQueryClasses();
 
     return (
         !media.isTouchScreen && (
             <div className="slideButtons">
-                <h1 className={invisibleClass}>a</h1>
+                <h1 className={cx("invisible", queryClasses)}>a</h1>
 
                 <div className="buttonsConteiner">
                     <div className={cx("iconContainer", { visible: prevVisible > 0 })} onClick={prev}>

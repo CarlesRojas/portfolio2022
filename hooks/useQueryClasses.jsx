@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import cx from "classnames";
 import { MediaQuery } from "../contexts/MediaQuery";
 
-export default function useClass(classes) {
+export default function useQueryClasses() {
     const { media } = useContext(MediaQuery);
     const { isDesktop, isTablet, isLandscape, isTouchScreen } = media;
 
@@ -11,5 +11,5 @@ export default function useClass(classes) {
         setAddMediaClasses(true);
     }, []);
 
-    return addMediaClasses ? cx(classes, { isDesktop }, { isTablet }, { isLandscape }, { isTouchScreen }) : classes;
+    return addMediaClasses ? cx({ isDesktop }, { isTablet }, { isLandscape }, { isTouchScreen }) : "";
 }
