@@ -107,7 +107,12 @@ const Slider = memo(({ elems, title }) => {
                 ))}
             </animated.div>
 
-            <SlideButtons next={next} prev={prev} nextVisible={true} prevVisible={true} />
+            <SlideButtons
+                next={next}
+                prev={prev}
+                nextVisible={min < elems.length - elemsInScreen.current}
+                prevVisible={min > 0}
+            />
         </section>
     );
 });

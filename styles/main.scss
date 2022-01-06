@@ -253,7 +253,7 @@
             left: 0;
             width: $iconSize;
             cursor: pointer;
-            pointer-events: all;
+            pointer-events: none;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -267,12 +267,10 @@
             }
 
             &.visible {
+                pointer-events: all;
+
                 &:hover {
                     opacity: 1;
-                }
-
-                .iconContainer {
-                    pointer-events: all;
                 }
             }
 
