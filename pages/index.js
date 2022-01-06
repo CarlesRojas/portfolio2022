@@ -5,6 +5,7 @@ import useQueryClasses from "../hooks/useQueryClasses";
 import Header from "../components/Header";
 import Slider from "../components/Slider";
 import Popup from "../components/Popup";
+import Profile from "../components/Profile";
 import { Projects } from "../contexts/Projects";
 
 export default function Home() {
@@ -49,7 +50,7 @@ export default function Home() {
                 <Slider elems={webDev.current} title="Product Design" onElemClick={handleElemClicked} />
 
                 <Popup visible={popupVisible} setVisible={setPopupVisible}>
-                    {currentPopupData.current.title}
+                    <Profile data={currentPopupData.current} />
                 </Popup>
             </main>
         </Fragment>
