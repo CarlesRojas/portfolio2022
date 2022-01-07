@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState, useContext, memo, useCallback } from "react";
+import { useContext, memo } from "react";
 import Image from "next/image";
 import { MediaQuery } from "../contexts/MediaQuery";
 import useQueryClasses from "../hooks/useQueryClasses";
 import cx from "classnames";
 import SVG from "react-inlinesvg";
 import dynamic from "next/dynamic";
-import Deck from "./Deck";
+import Screenshots from "./Screenshots";
 
 const Profile = memo(({ data, setVisible }) => {
     const { media } = useContext(MediaQuery);
@@ -44,17 +44,15 @@ const Profile = memo(({ data, setVisible }) => {
 
     const processDOM = process && <p className={cx("process", queryClasses)}>{process}</p>;
 
-    const linksDOM = links && (
-        <div className={cx("linksContainer", queryClasses)}>
-            {links.map(({ icon, url }, i) => (
-                <a href={url} target="_blank" className={cx("link", queryClasses)} key={i} rel="noopener noreferrer">
-                    <div className={cx("imageContainer", queryClasses)}>
-                        <Image src={icon} alt="" layout="fill" />
-                    </div>
-                </a>
-            ))}
-        </div>
-    );
+    const linksDOM =
+        links &&
+        links.map(({ icon, url }, i) => (
+            <a href={url} target="_blank" className={cx("link", queryClasses)} key={i} rel="noopener noreferrer">
+                <div className={cx("imageContainer", queryClasses)}>
+                    <Image src={icon} alt="" layout="fill" />
+                </div>
+            </a>
+        ));
 
     const qrDOM = qr && (
         <a href={qr.url} target="_blank" className={cx("qr", queryClasses)} rel="noopener noreferrer">
@@ -62,6 +60,10 @@ const Profile = memo(({ data, setVisible }) => {
                 <Image src={qr.qr} alt="" layout="fill" />
             </div>
         </a>
+    );
+
+    const screenshotsDOM = screenshots && (
+        <Screenshots video={video} screenshots={screenshots} horizontal={horizontal} />
     );
 
     // #################################################
@@ -79,14 +81,23 @@ const Profile = memo(({ data, setVisible }) => {
                         {descriptionDOM}
                         {processDOM}
 
-                        <div className={cx("linksContainer", queryClasses)}>
-                            {qrDOM}
-                            {linksDOM}
-                        </div>
+                        {(qrDOM || linksDOM) && (
+                            <div className={cx("linksContainer", queryClasses)}>
+                                {qrDOM}
+                                {linksDOM}
+                            </div>
+                        )}
 
-                        <div className={cx("deckAspectRatio", { horizontal }, { vertical: !horizontal }, queryClasses)}>
-                            <div className={cx("deckContainer", { horizontal }, queryClasses)}>
-                                <Deck images={screenshots.reverse()} horizontal={horizontal} />
+                        <div
+                            className={cx(
+                                "screenshotsAspectRatio",
+                                { horizontal },
+                                { vertical: !horizontal },
+                                queryClasses
+                            )}
+                        >
+                            <div className={cx("screenshotContainer", { horizontal }, queryClasses)}>
+                                {screenshotsDOM}
                             </div>
                         </div>
                     </div>
@@ -102,15 +113,15 @@ const Profile = memo(({ data, setVisible }) => {
                         {descriptionDOM}
                         {processDOM}
 
-                        <div className={cx("linksContainer", queryClasses)}>
-                            {qrDOM}
-                            {linksDOM}
-                        </div>
+                        {(qrDOM || linksDOM) && (
+                            <div className={cx("linksContainer", queryClasses)}>
+                                {qrDOM}
+                                {linksDOM}
+                            </div>
+                        )}
                     </div>
 
-                    <div className={cx("right", { horizontal }, queryClasses)}>
-                        <Deck images={screenshots.reverse()} horizontal={horizontal} />
-                    </div>
+                    <div className={cx("right", { horizontal }, queryClasses)}>{screenshotsDOM}</div>
                 </div>
             )}
         </div>
