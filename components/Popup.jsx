@@ -34,7 +34,7 @@ const Popup = memo(({ children, visible, setVisible }) => {
             {contentTransition(
                 (styles, item) =>
                     item && (
-                        <animated.div className="contentContainer" style={styles} onClick={() => setVisible(false)}>
+                        <animated.div className="contentContainer" style={styles} onMouseDown={() => setVisible(false)}>
                             {children}
                         </animated.div>
                     )

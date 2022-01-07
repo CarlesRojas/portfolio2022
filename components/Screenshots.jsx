@@ -1,21 +1,23 @@
-import { useState, useRef } from "react";
+import { useState, useRef, memo, useEffect } from "react";
 import Image from "next/image";
 import useQueryClasses from "../hooks/useQueryClasses";
 import cx from "classnames";
 import ReactPlayer from "react-player/lazy";
 import SVG from "react-inlinesvg";
+import dynamic from "next/dynamic";
+import { useSprings, animated } from "react-spring";
 
-export default function Screenshots({ video, screenshots, horizontal }) {
+const Screenshots = memo(({ video, screenshots, horizontal }) => {
     const queryClasses = useQueryClasses();
 
     // #################################################
     //   VIDEO
     // #################################################
 
-    const [playing, setPlaying] = useState(false);
+    const [playing, setPlaying] = useState(true);
     const player = useRef(null);
 
-    const onVideoClicked = () => {
+    const onPlayPauseClicked = () => {
         setPlaying((prev) => !prev);
     };
 
@@ -24,12 +26,13 @@ export default function Screenshots({ video, screenshots, horizontal }) {
         player.current.seekTo(0);
     };
 
-    var videoDOM = video ? (
-        <div className={cx("videoContainer", queryClasses)}>
-            <div className="playerContainer">
+    const playerContainerRef = useRef();
+
+    const videoDOM = video ? (
+        <div className={cx("videoContainer", queryClasses)} key={-1}>
+            <div className="playerContainer" ref={playerContainerRef}>
                 <ReactPlayer
                     ref={player}
-                    onClick={onVideoClicked}
                     playing={playing}
                     className="video"
                     url={video}
@@ -50,13 +53,110 @@ export default function Screenshots({ video, screenshots, horizontal }) {
                 />
             </div>
 
-            <div className={cx("playPause", { playing }, queryClasses)}>
-                <div className="iconContainer">
-                    <SVG className={cx("icon", queryClasses)} src={playing ? "/icons/pause.svg" : "/icons/play.svg"} />
+            <div
+                className={cx("playPause", { playing }, queryClasses)}
+                onClick={onPlayPauseClicked}
+                style={{
+                    width: playerContainerRef.current
+                        ? playerContainerRef.current.getBoundingClientRect().width
+                        : "100%",
+                }}
+            >
+                <div className={cx("iconContainer", { pause: playing })}>
+                    <SVG
+                        className={cx("icon", { play: !playing }, queryClasses)}
+                        src={playing ? "/icons/pause.svg" : "/icons/play.svg"}
+                    />
                 </div>
             </div>
         </div>
     ) : null;
+
+    // #################################################
+    //   SCREENSHOTS
+    // #################################################
+
+    const screenshotsDOM =
+        screenshots &&
+        screenshots.map((src, i) => (
+            <div className={cx("screenshot", queryClasses)} key={i}>
+                <Image className={cx({ horizontal }, { vertical: !horizontal })} src={src} alt="" layout="fill" />
+            </div>
+        ));
+
+    // #################################################
+    //   TRANSITIONS
+    // #################################################
+
+    const itemsArray =
+        videoDOM && screenshotsDOM
+            ? [videoDOM, ...screenshotsDOM]
+            : videoDOM
+            ? [videoDOM]
+            : screenshotsDOM
+            ? screenshotsDOM
+            : null;
+
+    const currentVisibleItem = useRef(0);
+    const [visibleItems, setVisibleItems] = useState(itemsArray.map((_, i) => i === currentVisibleItem.current));
+
+    const [springs, api] = useSprings(itemsArray.length, (i) => ({
+        opacity: visibleItems[i] ? 1 : 0,
+        pointerEvents: visibleItems[i] ? "all" : "none",
+        scale: visibleItems[i] ? 1 : 0.9,
+    }));
+
+    const next = () => {
+        setPlaying(false);
+        setVisibleItems((prev) => {
+            const newArray = [...prev];
+            newArray[currentVisibleItem.current] = false;
+
+            if (currentVisibleItem.current === newArray.length - 1) currentVisibleItem.current = 0;
+            else currentVisibleItem.current += 1;
+
+            newScreenshotShown.current = false;
+            return newArray;
+        });
+    };
+
+    const prev = () => {
+        setPlaying(false);
+        setVisibleItems((prev) => {
+            const newArray = [...prev];
+            newArray[currentVisibleItem.current] = false;
+
+            if (currentVisibleItem.current === 0) currentVisibleItem.current = newArray.length - 1;
+            else currentVisibleItem.current -= 1;
+
+            newScreenshotShown.current = false;
+            return newArray;
+        });
+    };
+
+    const newScreenshotShown = useRef(false);
+    useEffect(() => {
+        api.start((i) => ({
+            opacity: visibleItems[i] ? 1 : 0,
+            pointerEvents: visibleItems[i] ? "all" : "none",
+            scale: visibleItems[i] ? 1 : 0.9,
+        }));
+
+        if (!newScreenshotShown.current) {
+            const showTimeout = setTimeout(() => {
+                newScreenshotShown.current = true;
+                setVisibleItems((prev) => {
+                    const newArray = [...prev];
+                    newArray[currentVisibleItem.current] = true;
+                    return newArray;
+                });
+            }, 400);
+        }
+
+        return () => {
+            clearTimeout(showTimeout);
+        };
+    }, [visibleItems, api]);
 
     // #################################################
     //   RENDER
@@ -65,29 +165,28 @@ export default function Screenshots({ video, screenshots, horizontal }) {
     return (
         <div className={cx("screenshots", queryClasses)}>
             <div className={cx("container", queryClasses)}>
-                {videoDOM}
-
-                {screenshots.map((src, i) => (
-                    <div className={cx("screenshot", queryClasses)} key={i}>
-                        <Image
-                            className={cx({ horizontal }, { vertical: !horizontal })}
-                            src={src}
-                            alt=""
-                            layout="fill"
-                        />
-                    </div>
+                {springs.map((styles, i) => (
+                    <animated.div className="animated" style={styles} key={i}>
+                        {itemsArray[i]}
+                    </animated.div>
                 ))}
             </div>
 
             <div className={cx("controls", queryClasses)}>
-                <SVG className={cx("prev", queryClasses)} src={"/icons/prev.svg"} />
+                <SVG className={cx("prev", queryClasses)} src={"/icons/prev.svg"} onClick={prev} />
 
                 <p className={cx("state", queryClasses)}>
-                    1 <span>/ 6</span>
+                    {`${currentVisibleItem.current + 1} `}
+                    <span>/ {visibleItems.length}</span>
                 </p>
 
-                <SVG className={cx("next", queryClasses)} src={"/icons/next.svg"} />
+                <SVG className={cx("next", queryClasses)} src={"/icons/next.svg"} onClick={next} />
             </div>
         </div>
     );
-}
+});
+
+Screenshots.displayName = "Screenshots";
+export default dynamic(() => Promise.resolve(Screenshots), {
+    ssr: false,
+});

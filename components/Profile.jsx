@@ -71,7 +71,7 @@ const Profile = memo(({ data, setVisible }) => {
     // #################################################
 
     return (
-        <div className={cx("profile", queryClasses)} onClick={(e) => e.stopPropagation()}>
+        <div className={cx("profile", queryClasses)} onMouseDown={(e) => e.stopPropagation()}>
             {media.isMobile && (
                 <div className={cx("mobile", queryClasses)}>
                     {close}
