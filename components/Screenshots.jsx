@@ -1,6 +1,7 @@
-import { useState, useRef, memo, useEffect } from "react";
+import { useState, useRef, memo, useEffect, useContext } from "react";
 import Image from "next/image";
 import useQueryClasses from "../hooks/useQueryClasses";
+import { MediaQuery } from "../contexts/MediaQuery";
 import cx from "classnames";
 import ReactPlayer from "react-player/lazy";
 import SVG from "react-inlinesvg";
@@ -8,6 +9,7 @@ import dynamic from "next/dynamic";
 import { useSprings, animated } from "react-spring";
 
 const Screenshots = memo(({ video, screenshots, horizontal }) => {
+    const { media } = useContext(MediaQuery);
     const queryClasses = useQueryClasses();
 
     // #################################################
@@ -65,7 +67,7 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
                 <div className={cx("iconContainer", { pause: playing })}>
                     <SVG
                         className={cx("icon", { play: !playing }, queryClasses)}
-                        src={playing ? "/icons/pause.svg" : "/icons/play.svg"}
+                        src={playing && !media.isTouchScreen ? "/icons/pause.svg" : "/icons/play.svg"}
                     />
                 </div>
             </div>
