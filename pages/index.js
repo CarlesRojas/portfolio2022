@@ -29,7 +29,7 @@ export default function Home() {
                     name="viewport"
                     content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"
                 />
-                <meta name="theme-color" content="#131520" />
+                <meta name="theme-color" content="#1e212c" />
                 <meta name="description" content="A showcase of different projects I've been involved in." />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-title" content="Carles Rojas - Portfolio" />
