@@ -799,6 +799,7 @@
                 }
 
                 .playPause {
+                    transition: opacity 0.1s ease-in-out;
                     position: absolute;
                     height: 100%;
                     width: 100%;
@@ -806,8 +807,11 @@
                     align-items: center;
                     justify-content: center;
 
+                    &.playing {
+                        opacity: 0;
+                    }
+
                     &:not(.isTouchScreen) {
-                        transition: opacity 0.1s ease-in-out;
                         opacity: 1;
                         cursor: pointer;
 
