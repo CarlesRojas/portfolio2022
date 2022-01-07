@@ -374,6 +374,7 @@
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 2;
 
     .background {
         pointer-events: none;
@@ -511,14 +512,14 @@
 
         .right {
             width: 50%;
-            padding: 2.5rem 1rem 1rem 1rem;
+            padding: 2.5rem 1rem 1rem 0;
 
             &.isTablet {
-                padding: 5rem 2rem 2rem 2rem;
+                padding: 5rem 2rem 2rem 0;
             }
 
             &.isDesktop {
-                padding: 6rem 3rem 3rem 3rem;
+                padding: 6rem 3rem 3rem 0;
             }
 
             &.horizontal {
@@ -776,6 +777,7 @@
 
             span {
                 overflow: visible !important;
+                cursor: grab;
 
                 img {
                     border-radius: $borderRadius;
