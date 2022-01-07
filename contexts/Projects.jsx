@@ -2,6 +2,27 @@ import React, { createContext, useRef } from "react";
 export const Projects = createContext();
 
 const ProjectsProvider = (props) => {
+    const studies = useRef([
+        {
+            title: "Bachelor's Degree in informatics Engineering",
+            institution: "Facultat d'Informàtica de Barcelona",
+            initialYear: 2015,
+            finalYear: 2018,
+        },
+        {
+            title: "Bachelor's Degree in Product Design",
+            institution: "EINA Centre Universitari de Disseny i Art de Barcelona",
+            initialYear: 2011,
+            finalYear: 2015,
+        },
+        {
+            title: "High School",
+            institution: "Institució Cultural del CIC",
+            initialYear: 2009,
+            finalYear: 2011,
+        },
+    ]);
+
     const webDev = useRef([
         {
             title: "Covid-19",
@@ -197,6 +218,7 @@ const ProjectsProvider = (props) => {
     return (
         <Projects.Provider
             value={{
+                studies,
                 webDev,
             }}
         >

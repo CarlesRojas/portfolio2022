@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 import cx from "classnames";
 import Head from "next/head";
 import useQueryClasses from "../hooks/useQueryClasses";
@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Slider from "../components/Slider";
 import Popup from "../components/Popup";
 import Profile from "../components/Profile";
+import Footer from "../components/Footer";
 import { Projects } from "../contexts/Projects";
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
     };
 
     return (
-        <Fragment>
+        <>
             <Head>
                 <meta charSet="utf-8" />
                 <meta
@@ -52,7 +53,9 @@ export default function Home() {
                 <Popup visible={popupVisible} setVisible={setPopupVisible}>
                     <Profile data={currentPopupData.current} setVisible={setPopupVisible} />
                 </Popup>
+
+                <Footer />
             </main>
-        </Fragment>
+        </>
     );
 }
