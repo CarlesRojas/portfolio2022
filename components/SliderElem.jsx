@@ -4,7 +4,7 @@ import Image from "next/image";
 import cx from "classnames";
 
 const SliderElem = memo(({ data, width, onElemClick }) => {
-    const { screenshots } = data;
+    const { poster } = data;
 
     const [focused, setFocused] = useState(false);
 
@@ -23,7 +23,7 @@ const SliderElem = memo(({ data, width, onElemClick }) => {
                     onMouseEnter={() => setFocused(true)}
                     onMouseLeave={() => setFocused(false)}
                 >
-                    {screenshots && <Image src={screenshots[0]} alt="" layout="fill" />}
+                    {poster && <Image src={poster} alt="" layout="fill" />}
                 </div>
             </div>
         </div>

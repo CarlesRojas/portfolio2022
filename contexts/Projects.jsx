@@ -25,6 +25,7 @@ const ProjectsProvider = (props) => {
 
     const webDev = useRef([
         {
+            poster: "/projects/covid19/poster.jpg",
             title: "Covid-19",
             icon: "/projects/covid19/icon.png",
             subtitle: "Check how the Covid-19 virus is affecting each Province in Spain.",
@@ -53,6 +54,7 @@ const ProjectsProvider = (props) => {
                 "Covid-19 is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen.",
         },
         {
+            poster: "/projects/matchEat/poster.jpg",
             title: "MatchEat",
             icon: "/projects/matchEat/icon.png",
             subtitle: "Find the restaurant around you that matches your group best.",
@@ -81,6 +83,7 @@ const ProjectsProvider = (props) => {
                 "MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen.",
         },
         {
+            poster: "/projects/godHead/poster.jpg",
             title: "GodHead",
             icon: "/projects/godHead/icon.png",
             subtitle: "Find out what each item does in The Binding of Isaac: Repentance.",
@@ -106,6 +109,7 @@ const ProjectsProvider = (props) => {
                 "GodHead is a Progressive Web App made with ReactJS targeting mobile & desktop devices. You can add it as an app to your PC, Android, or iPhone by scanning this QR and adding the page to your Home Screen.",
         },
         {
+            poster: "/projects/cryptoPlace/poster.jpg",
             title: "CryptoPlace",
             icon: "/projects/cryptoPlace/icon.png",
             subtitle: "A recreation of the r/place experiment where every pixel is an NFT (Non Fungible Token).",
@@ -130,6 +134,7 @@ const ProjectsProvider = (props) => {
                 "CryptoPlace is a DApp made using ReactJS for the front end and Solidity for the Smart Contracts. It hasn't yet been deployed to the Ethereum network. Coming soon.",
         },
         {
+            poster: "/projects/gstocks/poster.jpg",
             title: "g-stocks",
             icon: "/projects/gstocks/icon.png",
             subtitle:
@@ -154,6 +159,29 @@ const ProjectsProvider = (props) => {
                 "g-stocks is a tool made with JavaScript targeting desktop devices. It is still in development and can't be accessed yet.",
         },
         {
+            poster: "/projects/reddon/poster.jpg",
+            title: "Reddon",
+            icon: "/projects/reddon/icon.png",
+            subtitle: "A client for Reddit that navigates posts horizontally.",
+            description: [
+                "Reddon is an app that connects to your current Reddit account and lets you navigate the most recent posts using horizontal scrolling.",
+            ],
+            links: null,
+            qr: null,
+            videoPosition: 0,
+            video: null,
+            screenshots: [
+                "/projects/reddon/screenshot1.jpg",
+                "/projects/reddon/screenshot2.jpg",
+                "/projects/reddon/screenshot3.jpg",
+                "/projects/reddon/screenshot4.jpg",
+            ],
+            horizontal: false,
+            process:
+                "Reddon is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use.",
+        },
+        {
+            poster: "/projects/spot/poster.jpg",
             title: "Spot",
             icon: "/projects/spot/icon.png",
             subtitle: "A minimal and traditional client for Spotify.",
@@ -176,46 +204,11 @@ const ProjectsProvider = (props) => {
             process:
                 "Spot is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use.",
         },
-        {
-            title: "Reddon",
-            icon: "/projects/reddon/icon.png",
-            subtitle: "A client for Reddit that navigates posts horizontally.",
-            description: [
-                "Reddon is an app that connects to your current Reddit account and lets you navigate the most recent posts using horizontal scrolling.",
-            ],
-            links: null,
-            qr: null,
-            videoPosition: 0,
-            video: null,
-            screenshots: [
-                "/projects/reddon/screenshot1.jpg",
-                "/projects/reddon/screenshot2.jpg",
-                "/projects/reddon/screenshot3.jpg",
-                "/projects/reddon/screenshot4.jpg",
-            ],
-            horizontal: false,
-            process:
-                "Reddon is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use.",
-        },
-        // {
-        //     title: "Portfolio",
-        //     icon: "/projects/portfolio/icon.png",
-        //     subtitle: "A showcase of different projects I've been involved in.",
-        //     description: [
-        //         "I've divided the projects in three sections, Web Development, Game Development & Product Design. Each card shows you a brief explanation of each project with some screenshots.",
-        //     ],
-        //     links: null,
-        //     qr: null,
-        //     videoPosition: 0,
-        //     video: null,
-        //     screenshots: null,
-        //     horizontal: true,
-        //     process: "This portfolio is a webpage build using ReactJS.",
-        // },
     ]);
 
     const gameDev = useRef([
         {
+            poster: "/projects/cubic3D/poster.jpg",
             title: "Cubic 3D",
             icon: "/projects/cubic3D/icon.png",
             subtitle: "Stack and puzzle the 3D tetrominos to avoid them getting to the top!",
@@ -244,6 +237,7 @@ const ProjectsProvider = (props) => {
                 "Cubic 3D is a game made with Unity targeting the mobile devices. The tridimensional tetrominos have been modeled using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store.",
         },
         {
+            poster: "/projects/letsDrive/poster.jpg",
             title: "Let's Drive",
             icon: "/projects/letsDrive/icon.png",
             subtitle: "Deliver all cars to their destination but avoid your past self!",
@@ -274,6 +268,7 @@ const ProjectsProvider = (props) => {
                 "Let's Drive is a game made with Unity targeting the mobile devices. It was made by Alejandra Jiménez & me (Carles Rojas). The game is coded in C# is currently published on the Google Play Store.",
         },
         {
+            poster: "/projects/trickShots/poster.jpg",
             title: "TrickShots",
             icon: "/projects/trickShots/icon.png",
             subtitle: "Augmented reality trick-shots using your room and virtual props.",
@@ -300,6 +295,7 @@ const ProjectsProvider = (props) => {
                 "MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen.",
         },
         {
+            poster: "/projects/holoChess/poster.jpg",
             title: "HoloChess",
             icon: "/projects/holoChess/icon.png",
             subtitle: "The first holographic chess game ever.",
@@ -331,6 +327,7 @@ const ProjectsProvider = (props) => {
                 "HoloChess is a game made with Unity targeting the HoloLens device by Microsoft. The distinctively styled chessboards and pieces have been modeled using SolidWorks and Maya and textured with Photoshop. The game is coded in C# and build with Visual Studio and is currently published on the Windows Store, available only for the HoloLens device by Microsoft.",
         },
         {
+            poster: "/projects/neoWar/poster.jpg",
             title: "NeoWar",
             icon: "/projects/neoWar/icon.png",
             subtitle: "Avoid the endless stream of neon enemies coming at you!",
@@ -359,6 +356,7 @@ const ProjectsProvider = (props) => {
                 "NeoWar is a game made with Unity targeting Windows devices. It was made by Jaume Ballester, Santi Rubio & me (Carles Rojas). The game is coded in C# and can be played online.",
         },
         {
+            poster: "/projects/escape/poster.jpg",
             title: "Escape",
             icon: "/projects/escape/icon.png",
             subtitle: "Escape through the maze using power ups and avoiding the red wall!",
@@ -388,6 +386,7 @@ const ProjectsProvider = (props) => {
                 "Escape is a game made with Unity targeting the mobile devices. All 3D shapes were made using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store.",
         },
         {
+            poster: "/projects/infinityGallery/poster.jpg",
             title: "Infinity Gallery",
             icon: "/projects/infinityGallery/icon.png",
             subtitle: "The biggest collection of pictures in the world, for a specific kind of pictures.",
@@ -414,6 +413,7 @@ const ProjectsProvider = (props) => {
                 "Infinity Gallery is an app made with Unity targeting the mobile devices. All images been made using Illustrator and Photoshop, and Wolfram Alpha was used to create the algorithm to encode the images. The app is coded in C#.",
         },
         {
+            poster: "/projects/portal/poster.jpg",
             title: "Portal",
             icon: "/projects/portal/icon.png",
             subtitle: "A Portal inspired game, but 2D and using pixel art.",
@@ -438,6 +438,7 @@ const ProjectsProvider = (props) => {
 
     const design = useRef([
         {
+            poster: "/projects/smartBike/poster.jpg",
             title: "SmartBike",
             icon: "/projects/smartBike/icon.png",
             subtitle: "Electric and foldable, the perfect city bike.",
@@ -460,6 +461,7 @@ const ProjectsProvider = (props) => {
                 "Smartbike was the final project for the 3D Modeling subject at EINA, University School of Design and Art. It was modeled with SolidWorks and animated using KeyShot. The final images were made using the KeyShot renders and Photoshop.",
         },
         {
+            poster: "/projects/holoLens/poster.jpg",
             title: "HoloLens 2",
             icon: "/projects/holoLens/icon.png",
             subtitle: "All in one: holographic computer and over-ear headphones.",
@@ -477,6 +479,7 @@ const ProjectsProvider = (props) => {
                 "HoloLens is a concept project modeled using SolidWorks and animated with KeyShot. It only represents a proof of concept and helps visualize how holographic computers could integrate with currently existing devices.",
         },
         {
+            poster: "/projects/gwood/poster.jpg",
             title: "Gwood",
             icon: "/projects/gwood/icon.png",
             subtitle: "Wood-based furniture showcased at 'Feria del Hábitat Valencia 2014'",
@@ -499,6 +502,7 @@ const ProjectsProvider = (props) => {
                 "Gwood is a project made by students of EINA, University School of Design and Art for the Hábitat fair in Valencia 2014. Gwood was divided in five groups. The lounge chair was modeled with SolidWorks and made at EINA's workshop.",
         },
         {
+            poster: "/projects/orbit/poster.jpg",
             title: "Orbit",
             icon: "/projects/orbit/icon.png",
             subtitle: "A concept for an all-in-one device. Tablet, Laptop & Desktop computer using a foldable screen.",
@@ -523,6 +527,7 @@ const ProjectsProvider = (props) => {
                 "Orbit was the final career project at EINA, University School of Design and Art. It was modeled using SolidWorks, rendered, and animated with KeyShot and edited with Photoshop. It's a proof of concept for an All-In-One device.",
         },
         {
+            poster: "/projects/showBattle/poster.jpg",
             title: "ShowBattle",
             icon: "/projects/showBattle/icon.png",
             subtitle: "A battle card game inspired by popular tv-shows",
@@ -540,6 +545,7 @@ const ProjectsProvider = (props) => {
                 "ShowBattle is a personal project that was completely created using Photoshop. Al the images used are property of the original show producers. The cards were printed once for personal use.",
         },
         {
+            poster: "/projects/smartWatch/poster.jpg",
             title: "SmartWatch",
             icon: "/projects/smartWatch/icon.png",
             subtitle: "A new intuitive way to check the time.",
