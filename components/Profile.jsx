@@ -72,7 +72,7 @@ const Profile = memo(({ data, setVisible }) => {
 
     return (
         <div className={cx("profile", queryClasses)} onMouseDown={(e) => e.stopPropagation()}>
-            {media.isMobile && (
+            {(media.isMobile || (media.isTablet && horizontal)) && (
                 <div className={cx("mobile", queryClasses)}>
                     {close}
 
