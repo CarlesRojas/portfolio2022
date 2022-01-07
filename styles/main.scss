@@ -413,6 +413,7 @@
 // #######################################
 
 .profile {
+    position: relative;
     pointer-events: all;
     height: calc(100% - 2rem);
     max-height: calc(100% - 2rem);
@@ -424,14 +425,12 @@
     border-radius: $borderRadius;
 
     &.isTablet {
-        height: fit-content;
         max-height: calc(100% - 4rem);
         max-width: calc(100% - 4rem);
         margin: 2rem;
     }
 
     &.isDesktop {
-        height: fit-content;
         max-height: calc(100% - 6rem);
         max-width: calc(100% - 6rem);
         margin: 3rem;
@@ -446,7 +445,6 @@
         position: relative;
         height: 100%;
         width: 100%;
-        padding: 1rem;
 
         .scroll {
             display: flex;
@@ -455,6 +453,11 @@
             width: 100%;
             overflow-x: hidden;
             overflow-y: auto;
+            padding: 1rem;
+
+            &.isTablet {
+                padding: 2rem;
+            }
 
             .screenshotsAspectRatio {
                 position: relative;
@@ -466,7 +469,7 @@
                         display: inline-block;
                         height: 0;
                         width: 1px;
-                        padding-bottom: calc((100% / (0.5625 / 1)) + #{$screenshotControlsHeight});
+                        padding-bottom: min(calc((100% / (0.5625 / 1)) + #{$screenshotControlsHeight}), 85vh);
                         content: "";
                     }
                 }
@@ -995,16 +998,18 @@
     align-items: center;
     justify-content: space-evenly;
     height: fit-content;
-    width: 100%;
     box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
     background-color: $backgroundLevel1;
     margin-top: 3rem;
-    border-radius: $borderRadius;
     padding: 1rem;
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
 
     &.isDesktop,
     &.isTablet {
         padding: 2rem;
+        margin-left: -3rem;
+        width: calc(100% + 6rem);
     }
 
     .top {
@@ -1020,6 +1025,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             text-align: center;
+            opacity: 0.9;
 
             &.isTablet {
                 font-size: 1.3rem;
@@ -1037,7 +1043,7 @@
             cursor: pointer;
             box-shadow: rgba(0, 0, 0, 0.6) 0px 26px 30px -10px, rgba(0, 0, 0, 0.7) 0px 16px 10px -10px;
             background-color: $backgroundLevel2;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.4);
             margin-bottom: 0.5rem;
             border-radius: $borderRadius;
             padding: 0.5rem 1.5rem;
@@ -1066,7 +1072,7 @@
 
         p {
             width: 100%;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.3);
             opacity: 0;
             font-size: 0.7rem;
             font-weight: 300;
@@ -1109,6 +1115,7 @@
                 font-size: 0.9rem;
                 font-weight: 500;
                 text-align: center;
+                opacity: 0.9;
 
                 &.isTablet {
                     font-size: 1rem;
@@ -1125,7 +1132,7 @@
                 font-size: 0.7rem;
                 font-weight: 300;
                 text-align: center;
-                opacity: 0.6;
+                opacity: 0.5;
 
                 &.isTablet {
                     font-size: 0.8rem;

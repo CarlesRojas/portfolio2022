@@ -72,11 +72,11 @@ const Profile = memo(({ data, setVisible }) => {
 
     return (
         <div className={cx("profile", queryClasses)} onMouseDown={(e) => e.stopPropagation()}>
-            {(media.isMobile || (media.isTablet && horizontal)) && (
+            {(media.isMobile || media.isTablet) && (
                 <div className={cx("mobile", queryClasses)}>
                     {close}
 
-                    <div className="scroll">
+                    <div className={cx("scroll", queryClasses)}>
                         {quickInfoDOM}
                         {descriptionDOM}
                         {processDOM}
