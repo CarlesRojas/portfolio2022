@@ -7,6 +7,7 @@ import ReactPlayer from "react-player/lazy";
 import SVG from "react-inlinesvg";
 import dynamic from "next/dynamic";
 import { useSprings, animated } from "react-spring";
+import { useDrag } from "react-use-gesture";
 
 const Screenshots = memo(({ video, screenshots, horizontal }) => {
     const { media } = useContext(MediaQuery);
@@ -161,12 +162,30 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
     }, [visibleItems, api]);
 
     // #################################################
+    //   GESTURE
+    // #################################################
+
+    // Vertical gesture
+    const gestureBind = useDrag(
+        ({ last, vxvy: [vx] }) => {
+            if (last) {
+                if (vx > 1) prev();
+                else if (vx < 1) next();
+            }
+        },
+        {
+            filterTaps: true,
+            axis: "x",
+        }
+    );
+
+    // #################################################
     //   RENDER
     // #################################################
 
     return (
         <div className={cx("screenshots", queryClasses)}>
-            <div className={cx("container", queryClasses)}>
+            <div className={cx("container", queryClasses)} {...gestureBind()}>
                 {springs.map((styles, i) => (
                     <animated.div className="animated" style={styles} key={i}>
                         {itemsArray[i]}

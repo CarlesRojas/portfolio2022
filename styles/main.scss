@@ -767,6 +767,7 @@
         position: relative;
         height: calc(100% - $screenshotControlsHeight);
         width: 100%;
+        touch-action: pan-y;
 
         .animated {
             position: absolute;
