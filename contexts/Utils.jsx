@@ -72,6 +72,19 @@ const UtilsProvider = (props) => {
     const invlerp = (x, y, a) => clamp((a - x) / (y - x));
 
     // ###################################################
+    //      ARRAY
+    // ###################################################
+
+    const insert = (arr, index, newItem) => [
+        // part of the array before the specified index
+        ...arr.slice(0, index),
+        // inserted item
+        newItem,
+        // part of the array after the specified index
+        ...arr.slice(index),
+    ];
+
+    // ###################################################
     //      DATE AND TIME
     // ###################################################
 
@@ -416,6 +429,9 @@ const UtilsProvider = (props) => {
                 clamp,
                 lerp,
                 invlerp,
+
+                // ARRAY
+                insert,
 
                 // DATE AND TIME
                 unixTimeToDate,

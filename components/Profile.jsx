@@ -9,7 +9,8 @@ import Screenshots from "./Screenshots";
 
 const Profile = memo(({ data, setVisible }) => {
     const { media } = useContext(MediaQuery);
-    const { title, icon, subtitle, description, links, qr, video, screenshots, horizontal, process } = data;
+    const { title, icon, subtitle, description, links, qr, videoPosition, video, screenshots, horizontal, process } =
+        data;
 
     const queryClasses = useQueryClasses();
 
@@ -24,7 +25,7 @@ const Profile = memo(({ data, setVisible }) => {
     const quickInfoDOM = icon && title && subtitle && (
         <div className={cx("quickInfo", queryClasses)}>
             <div className={cx("imageContainer", queryClasses)}>
-                <Image src={icon} alt="" layout="fill" />
+                <Image src={icon} alt="" layout="fill" priority />
             </div>
 
             <div className={cx("titleContainer", queryClasses)}>
@@ -49,7 +50,7 @@ const Profile = memo(({ data, setVisible }) => {
         links.map(({ icon, url }, i) => (
             <a href={url} target="_blank" className={cx("link", queryClasses)} key={i} rel="noopener noreferrer">
                 <div className={cx("imageContainer", queryClasses)}>
-                    <Image src={icon} alt="" layout="fill" />
+                    <Image src={icon} alt="" layout="fill" priority />
                 </div>
             </a>
         ));
@@ -57,13 +58,13 @@ const Profile = memo(({ data, setVisible }) => {
     const qrDOM = qr && (
         <a href={qr.url} target="_blank" className={cx("qr", queryClasses)} rel="noopener noreferrer">
             <div className={cx("imageContainer", queryClasses)}>
-                <Image src={qr.qr} alt="" layout="fill" />
+                <Image src={qr.qr} alt="" layout="fill" priority />
             </div>
         </a>
     );
 
     const screenshotsDOM = screenshots && (
-        <Screenshots video={video} screenshots={screenshots} horizontal={horizontal} />
+        <Screenshots video={video} screenshots={screenshots} horizontal={horizontal} videoPosition={videoPosition} />
     );
 
     // #################################################

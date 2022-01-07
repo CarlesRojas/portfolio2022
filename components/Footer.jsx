@@ -29,8 +29,6 @@ export default function Footer() {
         setCanCopy(navigator && "clipboard" in navigator && "writeText" in navigator.clipboard);
     }, []);
 
-    console.log(canCopy);
-
     // ###################################################
     //      RENDER
     // ###################################################
@@ -40,7 +38,7 @@ export default function Footer() {
             <div className={cx("top", queryClasses)}>
                 <h1 className={cx(queryClasses)}>Carles Rojas</h1>
 
-                <h2 className={cx(queryClasses)} onClick={handleCopyEmail}>
+                <h2 className={cx(queryClasses, { canCopy })} onClick={handleCopyEmail}>
                     carlesrojas@outlook.com
                 </h2>
 

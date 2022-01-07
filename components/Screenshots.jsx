@@ -2,6 +2,7 @@ import { useState, useRef, memo, useEffect, useContext } from "react";
 import Image from "next/image";
 import useQueryClasses from "../hooks/useQueryClasses";
 import { MediaQuery } from "../contexts/MediaQuery";
+import { Utils } from "../contexts/Utils";
 import cx from "classnames";
 import ReactPlayer from "react-player/lazy";
 import SVG from "react-inlinesvg";
@@ -9,15 +10,16 @@ import dynamic from "next/dynamic";
 import { useSprings, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
-const Screenshots = memo(({ video, screenshots, horizontal }) => {
+const Screenshots = memo(({ video, screenshots, horizontal, videoPosition }) => {
     const { media } = useContext(MediaQuery);
+    const { insert } = useContext(Utils);
     const queryClasses = useQueryClasses();
 
     // #################################################
     //   VIDEO
     // #################################################
 
-    const [playing, setPlaying] = useState(true);
+    const [playing, setPlaying] = useState(false);
     const player = useRef(null);
 
     const onPlayPauseClicked = () => {
@@ -32,8 +34,8 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
     const playerContainerRef = useRef();
 
     const videoDOM = video ? (
-        <div className={cx("videoContainer", queryClasses)} key={-1}>
-            <div className="playerContainer" ref={playerContainerRef}>
+        <div className={cx("videoContainer", { horizontal }, queryClasses)} key={-1}>
+            <div className={cx("playerContainer", { horizontal })} ref={playerContainerRef}>
                 <ReactPlayer
                     ref={player}
                     playing={playing}
@@ -83,7 +85,13 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
         screenshots &&
         screenshots.map((src, i) => (
             <div className={cx("screenshot", queryClasses)} key={i}>
-                <Image className={cx({ horizontal }, { vertical: !horizontal })} src={src} alt="" layout="fill" />
+                <Image
+                    className={cx({ horizontal }, { vertical: !horizontal })}
+                    src={src}
+                    alt=""
+                    layout="fill"
+                    priority
+                />
             </div>
         ));
 
@@ -91,14 +99,8 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
     //   TRANSITIONS
     // #################################################
 
-    const itemsArray =
-        videoDOM && screenshotsDOM
-            ? [videoDOM, ...screenshotsDOM]
-            : videoDOM
-            ? [videoDOM]
-            : screenshotsDOM
-            ? screenshotsDOM
-            : null;
+    var itemsArray = screenshotsDOM ? [...screenshotsDOM] : null;
+    if (videoDOM) itemsArray = insert(itemsArray, videoPosition, videoDOM);
 
     const currentVisibleItem = useRef(0);
     const [visibleItems, setVisibleItems] = useState(itemsArray.map((_, i) => i === currentVisibleItem.current));
@@ -118,6 +120,8 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
             if (currentVisibleItem.current === newArray.length - 1) currentVisibleItem.current = 0;
             else currentVisibleItem.current += 1;
 
+            if (currentVisibleItem.current === videoPosition) setPlaying(true);
+
             newScreenshotShown.current = false;
             return newArray;
         });
@@ -131,6 +135,8 @@ const Screenshots = memo(({ video, screenshots, horizontal }) => {
 
             if (currentVisibleItem.current === 0) currentVisibleItem.current = newArray.length - 1;
             else currentVisibleItem.current -= 1;
+
+            if (currentVisibleItem.current === videoPosition) setPlaying(true);
 
             newScreenshotShown.current = false;
             return newArray;

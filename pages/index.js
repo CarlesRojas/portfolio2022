@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import { Projects } from "../contexts/Projects";
 
 export default function Home() {
-    const { webDev } = useContext(Projects);
+    const { webDev, gameDev, design } = useContext(Projects);
     const queryClasses = useQueryClasses();
 
     const currentPopupData = useRef({});
@@ -47,8 +47,8 @@ export default function Home() {
             <main className={cx("home", queryClasses)}>
                 <Header />
                 <Slider elems={webDev.current} title="Web Development" onElemClick={handleElemClicked} />
-                <Slider elems={webDev.current} title="Game Development" onElemClick={handleElemClicked} />
-                <Slider elems={webDev.current} title="Product Design" onElemClick={handleElemClicked} />
+                <Slider elems={gameDev.current} title="Game Development" onElemClick={handleElemClicked} />
+                <Slider elems={design.current} title="Product Design" onElemClick={handleElemClicked} />
 
                 <Popup visible={popupVisible} setVisible={setPopupVisible}>
                     <Profile data={currentPopupData.current} setVisible={setPopupVisible} />
