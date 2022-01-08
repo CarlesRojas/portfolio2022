@@ -34,7 +34,16 @@ const ProjectsProvider = (props) => {
                 "If you have to travel around Spain, check the state of Covid-19 in your destinations, with some guides about what measures you should take once there.",
                 "If you just caught Covid-19, the app shows you useful information about how to proceed.",
             ],
-            links: null,
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/estado-covid-client",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/estado-covid-server",
+                    icon: "/icons/github.svg",
+                },
+            ],
             qr: {
                 url: "https://estado-covid.netlify.app/",
                 qr: "/projects/covid19/qr.png",
@@ -62,7 +71,16 @@ const ProjectsProvider = (props) => {
                 "Having trouble choosing a restaurant with your friends or your significant other? Use MatchEat to find the restaurant around you that the group likes the most.",
                 "Everyone joins a room at the same time from their phones. Each of you will see the same list of restaurants and will give each one a Like, Love or Nope. When everyone is finished, the restaurants will be ranked, and you can get directions to any of them.",
             ],
-            links: null,
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/matcheat-client",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/matcheat-server",
+                    icon: "/icons/github.svg",
+                },
+            ],
             qr: {
                 url: "http://matcheat.netlify.app/",
                 qr: "/projects/matchEat/qr.png",
@@ -91,7 +109,12 @@ const ProjectsProvider = (props) => {
                 "Having trouble remembering what one of the more than seven hundred items does in the game? Use this app to quickly find out everything about it.",
                 "You can search the items by their icon, by their name or subtitle.",
             ],
-            links: null,
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/GodHead",
+                    icon: "/icons/github.svg",
+                },
+            ],
             qr: {
                 url: "http://godhead.netlify.app/",
                 qr: "/projects/godHead/qr.png",
@@ -117,11 +140,17 @@ const ProjectsProvider = (props) => {
                 "Each pixel in the 256x256 canvas is owned by someone who can change its color. You can buy a group of them or work together to create pixel art.",
                 "CryptoPlace is a decentralized app (DApp) that uses Smart Contracts and the ERC721 standard to make sure each pixel is really owned by the person that mints it or buys it.",
             ],
-            links: null,
-            qr: {
-                url: "http://cryptoplace.netlify.app/",
-                qr: "/projects/cryptoPlace/qr.png",
-            },
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/CryptoBoard",
+                    icon: "/icons/github.svg",
+                },
+            ],
+            qr: null,
+            // {
+            //     url: "http://cryptoplace.netlify.app/",
+            //     qr: "/projects/cryptoPlace/qr.png",
+            // },
             videoPosition: 0,
             video: null,
             screenshots: [
@@ -166,7 +195,12 @@ const ProjectsProvider = (props) => {
             description: [
                 "Reddon is an app that connects to your current Reddit account and lets you navigate the most recent posts using horizontal scrolling.",
             ],
-            links: null,
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/Reddon",
+                    icon: "/icons/github.svg",
+                },
+            ],
             qr: null,
             videoPosition: 0,
             video: null,
@@ -188,7 +222,16 @@ const ProjectsProvider = (props) => {
             description: [
                 "Spot is an app that connects to your current Spotify account and lets you explore your music using a traditional library with a minimalistic design.",
             ],
-            links: null,
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/Spot2",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/Spot-Server",
+                    icon: "/icons/github.svg",
+                },
+            ],
             qr: null,
             videoPosition: 0,
             video: "/projects/spot/video.mp4",
@@ -218,7 +261,7 @@ const ProjectsProvider = (props) => {
             links: [
                 {
                     url: "https://play.google.com/store/apps/details?id=com.PinyaGames.Tetris3D",
-                    icon: "/icons/android.png",
+                    icon: "/icons/android.svg",
                 },
             ],
             qr: null,
@@ -249,7 +292,7 @@ const ProjectsProvider = (props) => {
             links: [
                 {
                     url: "https://play.google.com/store/apps/details?id=com.PinyaGames.LetsDrive",
-                    icon: "/icons/android.png",
+                    icon: "/icons/android.svg",
                 },
             ],
             qr: null,
@@ -278,7 +321,7 @@ const ProjectsProvider = (props) => {
             links: [
                 {
                     url: "https://www.microsoft.com/en-us/store/p/trickshots/9nkmv03xqcng#",
-                    icon: "/icons/hololens.png",
+                    icon: "/icons/hololens.svg",
                 },
             ],
             qr: null,
@@ -305,7 +348,7 @@ const ProjectsProvider = (props) => {
             links: [
                 {
                     url: "https://www.microsoft.com/en-us/store/p/holochess-beta/9nblggh40d7c#",
-                    icon: "/icons/hololens.png",
+                    icon: "/icons/hololens.svg",
                 },
             ],
             qr: null,
@@ -339,6 +382,10 @@ const ProjectsProvider = (props) => {
                     url: "https://pinyagames.itch.io/neowar",
                     icon: "/icons/itchio.svg",
                 },
+                {
+                    url: "https://github.com/CarlesRojas/Neowar",
+                    icon: "/icons/github.svg",
+                },
             ],
             qr: null,
             videoPosition: 0,
@@ -366,7 +413,7 @@ const ProjectsProvider = (props) => {
             links: [
                 {
                     url: "https://play.google.com/store/apps/details?id=com.PinyaGames.Escape",
-                    icon: "/icons/android.png",
+                    icon: "/icons/android.svg",
                 },
             ],
             qr: null,
@@ -394,7 +441,12 @@ const ProjectsProvider = (props) => {
                 "All the pictures in Infinity Gallery are 64 by 64 pixels and in grayscale, using 64 shades of grey. The reason the Infinity Gallery is so big is because it contains every combination possible of this finite number of pixels and gray tonalities. Exactly 1.29 x 107398 pictures. You've read this number quite fast, and you're probably not grasping how enormously big that is.",
                 "So, what are the implications of this? In this Gallery you can find every single picture (with those properties) that has been taken in the past and that will be taken in the future. It even contains all the pictures that will never be taken. There is a 64x64 grayscale version of every picture you have posted and will ever post on social media, of each planet in the Universe and each species that may or may not live on them. There is also a picture of those keys you lost a few years ago in the exact location they are now. The only hard task is finding them. Good luck!",
             ],
-            links: null,
+            links: [
+                {
+                    url: "https://play.google.com/store/apps/details?id=com.PinyaGames.InfinityGallery",
+                    icon: "/icons/android.svg",
+                },
+            ],
             qr: null,
             videoPosition: 0,
             video: null,

@@ -2,6 +2,7 @@ import { useContext, useState, useRef, useEffect } from "react";
 import cx from "classnames";
 import { Projects } from "../contexts/Projects";
 import useQueryClasses from "../hooks/useQueryClasses";
+import SVG from "react-inlinesvg";
 
 export default function Footer() {
     const { studies } = useContext(Projects);
@@ -36,6 +37,8 @@ export default function Footer() {
     return (
         <footer className={cx("footer", queryClasses)}>
             <div className={cx("top", queryClasses)}>
+                <SVG src={"/logo.svg"} className="logo" />
+
                 <h1 className={cx(queryClasses)}>Carles Rojas</h1>
 
                 <h2 className={cx(queryClasses, { canCopy })} onClick={handleCopyEmail}>

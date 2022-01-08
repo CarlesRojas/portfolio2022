@@ -50,7 +50,8 @@ const Profile = memo(({ data, setVisible }) => {
         links.map(({ icon, url }, i) => (
             <a href={url} target="_blank" className={cx("link", queryClasses)} key={i} rel="noopener noreferrer">
                 <div className={cx("imageContainer", queryClasses)}>
-                    <Image src={icon} alt="" layout="fill" priority />
+                    <SVG src={icon} className="icon" />
+                    {/* <Image src={icon} alt="" layout="fill" priority /> */}
                 </div>
             </a>
         ));
