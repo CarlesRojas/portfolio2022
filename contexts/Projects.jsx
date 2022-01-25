@@ -25,6 +25,50 @@ const ProjectsProvider = (props) => {
 
     const webDev = useRef([
         {
+            poster: "/projects/fanfastic/poster.jpg",
+            title: "Fanfastic",
+            icon: "/projects/fanfastic/icon.png",
+            subtitle: "Keep track of your fasting schedule in a healthy way.",
+            description: [
+                "In Fanfastic you can setup any intermittent fasting routine you wish. Choose how long you want to fast for and when to start. You can also track your weight and BMI.",
+                "The app will remind you of when to start and stop fasting and it will provide an explanation for the different phases of fasting.",
+            ],
+            links: [
+                {
+                    url: "https://play.google.com/store/apps/details?id=app.netlify.fanfastic",
+                    icon: "/icons/android.svg",
+                },
+                {
+                    url: "",
+                    icon: "/icons/windows.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/fanfastic-client",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/fanfastic-server",
+                    icon: "/icons/github.svg",
+                },
+            ],
+            qr: {
+                url: "https://fanfastic.netlify.app/",
+                qr: "/projects/fanfastic/qr.png",
+            },
+            videoPosition: 0,
+            video: "/projects/fanfastic/video.mp4",
+            screenshots: [
+                "/projects/fanfastic/screenshot1.jpg",
+                "/projects/fanfastic/screenshot2.jpg",
+                "/projects/fanfastic/screenshot3.jpg",
+                "/projects/fanfastic/screenshot4.jpg",
+                "/projects/fanfastic/screenshot5.jpg",
+            ],
+            horizontal: false,
+            process:
+                "Fanfastic is a Progressive Web App made with ReactJS that targets mobile, tablet and desktop devices via responsive UI. It is available in the Google Play Store and in the Microsoft Store. You can also add it to your iPhone by scanning this QR and adding the website to your Home Screen.",
+        },
+        {
             poster: "/projects/covid19/poster.jpg",
             title: "Covid-19",
             icon: "/projects/covid19/icon.png",
