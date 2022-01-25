@@ -33,6 +33,11 @@ export default function Home() {
                 <meta name="description" content="A showcase of different projects I've been involved in." />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-title" content="Carles Rojas - Portfolio" />
+                <meta property="og:title" content="Carles Rojas - Portfolio" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://carlesrojas.vercel.app/" />
+                <meta property="og:image" content="/splashscreen.png" />
+                <meta property="og:description" content="A showcase of different projects I've been involved in." />
 
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="manifest" href="/manifest.json" />
@@ -40,7 +45,6 @@ export default function Home() {
                 <link rel="apple-touch-icon" sizes="180x180" href="/appleIcon180.png" />
                 <link rel="apple-touch-icon" sizes="152x152" href="/appleIcon152.png" />
                 <link rel="apple-touch-icon" sizes="167x167" href="/appleIcon167.png" />
-
                 <title>Carles Rojas - Portfolio</title>
             </Head>
 
