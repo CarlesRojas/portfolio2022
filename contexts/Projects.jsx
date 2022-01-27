@@ -39,7 +39,7 @@ const ProjectsProvider = (props) => {
                     icon: "/icons/android.svg",
                 },
                 {
-                    url: "",
+                    url: "https://www.microsoft.com/store/productId/9NFJ33VBGK91",
                     icon: "/icons/windows.svg",
                 },
                 {
@@ -55,7 +55,7 @@ const ProjectsProvider = (props) => {
                 url: "https://fanfastic.netlify.app/",
                 qr: "/projects/fanfastic/qr.png",
             },
-            videoPosition: 0,
+            videoPosition: 5,
             video: "/projects/fanfastic/video.mp4",
             screenshots: [
                 "/projects/fanfastic/screenshot1.jpg",
