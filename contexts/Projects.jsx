@@ -295,33 +295,49 @@ const ProjectsProvider = (props) => {
 
     const gameDev = useRef([
         {
-            poster: "/projects/cubic3D/poster.jpg",
-            title: "Cubic 3D",
-            icon: "/projects/cubic3D/icon.png",
+            poster: "/projects/kubic/poster.jpg",
+            title: "Kubic",
+            icon: "/projects/kubic/icon.png",
             subtitle: "Stack and puzzle the 3D tetrominos to avoid them getting to the top!",
             description: [
-                "Both the pieces and the board have three dimensions making this a lot more challenging! Clear whole planes by filling them and try to reach the highest score by clearing four at the same time!",
+                "Both the pieces and the board have three dimensions, making this a lot more challenging!",
+                "Clear planes by filling them, and try to reach the highest score by clearing four at the same time!",
             ],
             links: [
                 {
-                    url: "https://play.google.com/store/apps/details?id=com.PinyaGames.Tetris3D",
+                    url: "https://play.google.com/store/apps/details?id=app.pinya.kubic",
                     icon: "/icons/android.svg",
                 },
+                {
+                    url: "https://www.microsoft.com/store/apps/9NZLVCD128J4",
+                    icon: "/icons/windows.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/kubic-client",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/kubic-server",
+                    icon: "/icons/github.svg",
+                },
             ],
-            qr: null,
-            videoPosition: 0,
-            video: "/projects/cubic3D/video.mp4",
+            qr: {
+                url: "https://kubic.pinya.app/",
+                qr: "/projects/kubic/qr.png",
+            },
+            videoPosition: 1,
+            video: "/projects/kubic/video.mp4",
             screenshots: [
-                "/projects/cubic3D/screenshot1.jpg",
-                "/projects/cubic3D/screenshot2.jpg",
-                "/projects/cubic3D/screenshot3.jpg",
-                "/projects/cubic3D/screenshot4.jpg",
-                "/projects/cubic3D/screenshot5.jpg",
-                "/projects/cubic3D/screenshot6.jpg",
+                "/projects/kubic/screenshot1.jpg",
+                "/projects/kubic/screenshot2.jpg",
+                "/projects/kubic/screenshot3.jpg",
+                "/projects/kubic/screenshot4.jpg",
+                "/projects/kubic/screenshot5.jpg",
+                "/projects/kubic/screenshot6.jpg",
             ],
             horizontal: false,
             process:
-                "Cubic 3D is a game made with Unity targeting the mobile devices. The tridimensional tetrominos have been modeled using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store.",
+                "Kubic is a Progressive Web App made with ReactJS and ThreeJS. It targets mobile, tablet and desktop devices via responsive UI. The game is available in the Google Play Store and the Microsoft Store. You can also add it to your iPhone by scanning this QR and adding the website to your Home Screen.",
         },
         {
             poster: "/projects/letsDrive/poster.jpg",
