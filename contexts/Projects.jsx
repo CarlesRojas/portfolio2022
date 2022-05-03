@@ -25,6 +25,82 @@ const ProjectsProvider = (props) => {
 
     const webDev = useRef([
         {
+            poster: "/projects/scoot/poster.jpg",
+            title: "scoot",
+            icon: "/projects/scoot/icon.png",
+            subtitle: "Browse for your next motorcycle in a comfortable way.",
+            description: [
+                "The application allows you to explore Mundimoto’s motorcycles in a very pleasant and comfortable way, while it learns your preferences to show you more relevant results.",
+                "This app was developed alongside Jaume Ballester and Santi Rubio for the 2022 HackUPC.",
+            ],
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/hackupc2022",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/JaumeBallester/hackupc2022-server",
+                    icon: "/icons/github.svg",
+                },
+            ],
+            qr: {
+                url: "https://scoot.pinya.app/",
+                qr: "/projects/scoot/qr.png",
+            },
+            videoPosition: 0,
+            video: "/projects/scoot/video.mp4",
+            screenshots: [
+                "/projects/scoot/screenshot1.jpg",
+                "/projects/scoot/screenshot2.jpg",
+                "/projects/scoot/screenshot3.jpg",
+                "/projects/scoot/screenshot4.jpg",
+                "/projects/scoot/screenshot5.jpg",
+                "/projects/scoot/screenshot6.jpg",
+                "/projects/scoot/screenshot7.jpg",
+            ],
+            horizontal: false,
+            process:
+                "Scoot is a Progressive Web App made with ReactJS that targets mobile, tablet and desktop devices via responsive UI. You can also add it to your phone by scanning or clicking this QR and adding the website to your Home Screen.",
+        },
+        {
+            poster: "/projects/covid19/poster.jpg",
+            title: "Covid-19",
+            icon: "/projects/covid19/icon.png",
+            subtitle: "Check how the Covid-19 virus is affecting each Province in Spain.",
+            description: [
+                "Get information about how Covid-19 is affecting every Province in Spain in the last 14 days. Get updated numbers every day about the current state of the virus and track its progress.",
+                "If you have to travel around Spain, check the state of Covid-19 in your destinations, with some guides about what measures you should take once there.",
+                "If you just caught Covid-19, the app shows you useful information about how to proceed.",
+            ],
+            links: [
+                {
+                    url: "https://github.com/CarlesRojas/estado-covid-client",
+                    icon: "/icons/github.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/estado-covid-server",
+                    icon: "/icons/github.svg",
+                },
+            ],
+            qr: {
+                url: "https://estado-covid.netlify.app/",
+                qr: "/projects/covid19/qr.png",
+            },
+            videoPosition: 2,
+            video: "/projects/covid19/video.mp4",
+            screenshots: [
+                "/projects/covid19/screenshot1.jpg",
+                "/projects/covid19/screenshot2.jpg",
+                // "/projects/covid19/screenshot3.jpg",
+                "/projects/covid19/screenshot4.jpg",
+                "/projects/covid19/screenshot5.jpg",
+                "/projects/covid19/screenshot6.jpg",
+            ],
+            horizontal: false,
+            process:
+                "Covid-19 is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen.",
+        },
+        {
             poster: "/projects/fanfastic/poster.jpg",
             title: "Fanfastic",
             icon: "/projects/fanfastic/icon.png",
@@ -69,42 +145,35 @@ const ProjectsProvider = (props) => {
                 "Fanfastic is a Progressive Web App made with ReactJS that targets mobile, tablet and desktop devices via responsive UI. It is available in the Google Play Store and in the Microsoft Store. You can also add it to your iPhone by scanning this QR and adding the website to your Home Screen.",
         },
         {
-            poster: "/projects/covid19/poster.jpg",
-            title: "Covid-19",
-            icon: "/projects/covid19/icon.png",
-            subtitle: "Check how the Covid-19 virus is affecting each Province in Spain.",
+            poster: "/projects/godHead/poster.jpg",
+            title: "GodHead",
+            icon: "/projects/godHead/icon.png",
+            subtitle: "Find out what each item does in The Binding of Isaac: Repentance.",
             description: [
-                "Get information about how Covid-19 is affecting every Province in Spain in the last 14 days. Get updated numbers every day about the current state of the virus and track its progress.",
-                "If you have to travel around Spain, check the state of Covid-19 in your destinations, with some guides about what measures you should take once there.",
-                "If you just caught Covid-19, the app shows you useful information about how to proceed.",
+                "Having trouble remembering what one of the more than seven hundred items does in the game? Use this app to quickly find out everything about it.",
+                "You can search the items by their icon, by their name or subtitle.",
             ],
             links: [
                 {
-                    url: "https://github.com/CarlesRojas/estado-covid-client",
-                    icon: "/icons/github.svg",
-                },
-                {
-                    url: "https://github.com/CarlesRojas/estado-covid-server",
+                    url: "https://github.com/CarlesRojas/GodHead",
                     icon: "/icons/github.svg",
                 },
             ],
             qr: {
-                url: "https://estado-covid.netlify.app/",
-                qr: "/projects/covid19/qr.png",
+                url: "http://godhead.netlify.app/",
+                qr: "/projects/godHead/qr.png",
             },
-            videoPosition: 2,
-            video: "/projects/covid19/video.mp4",
+            videoPosition: 0,
+            video: null,
             screenshots: [
-                "/projects/covid19/screenshot1.jpg",
-                "/projects/covid19/screenshot2.jpg",
-                // "/projects/covid19/screenshot3.jpg",
-                "/projects/covid19/screenshot4.jpg",
-                "/projects/covid19/screenshot5.jpg",
-                "/projects/covid19/screenshot6.jpg",
+                "/projects/godHead/screenshot1.jpg",
+                "/projects/godHead/screenshot2.jpg",
+                "/projects/godHead/screenshot3.jpg",
+                "/projects/godHead/screenshot4.jpg",
             ],
-            horizontal: false,
+            horizontal: true,
             process:
-                "Covid-19 is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen.",
+                "GodHead is a Progressive Web App made with ReactJS targeting mobile & desktop devices. You can add it as an app to your PC, Android, or iPhone by scanning this QR and adding the page to your Home Screen.",
         },
         {
             poster: "/projects/matchEat/poster.jpg",
@@ -143,37 +212,6 @@ const ProjectsProvider = (props) => {
             horizontal: false,
             process:
                 "MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen.",
-        },
-        {
-            poster: "/projects/godHead/poster.jpg",
-            title: "GodHead",
-            icon: "/projects/godHead/icon.png",
-            subtitle: "Find out what each item does in The Binding of Isaac: Repentance.",
-            description: [
-                "Having trouble remembering what one of the more than seven hundred items does in the game? Use this app to quickly find out everything about it.",
-                "You can search the items by their icon, by their name or subtitle.",
-            ],
-            links: [
-                {
-                    url: "https://github.com/CarlesRojas/GodHead",
-                    icon: "/icons/github.svg",
-                },
-            ],
-            qr: {
-                url: "http://godhead.netlify.app/",
-                qr: "/projects/godHead/qr.png",
-            },
-            videoPosition: 0,
-            video: null,
-            screenshots: [
-                "/projects/godHead/screenshot1.jpg",
-                "/projects/godHead/screenshot2.jpg",
-                "/projects/godHead/screenshot3.jpg",
-                "/projects/godHead/screenshot4.jpg",
-            ],
-            horizontal: true,
-            process:
-                "GodHead is a Progressive Web App made with ReactJS targeting mobile & desktop devices. You can add it as an app to your PC, Android, or iPhone by scanning this QR and adding the page to your Home Screen.",
         },
         {
             poster: "/projects/cryptoPlace/poster.jpg",
