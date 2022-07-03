@@ -333,6 +333,46 @@ const ProjectsProvider = (props) => {
 
     const gameDev = useRef([
         {
+            poster: "/projects/simulchess/poster.jpg",
+            title: "simulchess",
+            icon: "/projects/simulchess/icon.png",
+            subtitle: "A chess variant where turns are played simultaneously. ",
+            description: [
+                "Your turn and the opponents happen at the same time. You have 60 seconds to decide your move. Missing it loses you the game. Once both players have decided, both moves will resolve simultaneously.",
+                "If both moves end up in the same square, the player with precedence will capture the opponent's piece. White starts having precedence, and it changes every turn.",
+            ],
+            links: [
+                {
+                    url: "https://play.google.com/store/apps/details?id=app.pinya.simulchess",
+                    icon: "/icons/android.svg",
+                },
+                {
+                    url: "https://www.microsoft.com/store/apps/9N7L52DD9PFK",
+                    icon: "/icons/windows.svg",
+                },
+                {
+                    url: "https://github.com/CarlesRojas/simulchess",
+                    icon: "/icons/github.svg",
+                },
+            ],
+            qr: {
+                url: "https://simulchess.pinya.app/",
+                qr: "/projects/simulchess/qr.png",
+            },
+            videoPosition: 0,
+            video: "/projects/simulchess/video.mp4",
+            screenshots: [
+                "/projects/simulchess/screenshot1.jpg",
+                "/projects/simulchess/screenshot2.jpg",
+                "/projects/simulchess/screenshot3.jpg",
+                "/projects/simulchess/screenshot4.jpg",
+                "/projects/simulchess/screenshot5.jpg",
+            ],
+            horizontal: false,
+            process:
+                "Simulchess is a Progressive Web App made with ReactJS and PixiJS. It targets mobile, tablet and desktop devices via responsive UI. The game is available in the Google Play Store and the Microsoft Store. You can also add it to your iPhone by scanning this QR and adding the website to your Home Screen.",
+        },
+        {
             poster: "/projects/kubic/poster.jpg",
             title: "Kubic",
             icon: "/projects/kubic/icon.png",
