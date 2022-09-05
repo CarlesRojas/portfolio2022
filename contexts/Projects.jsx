@@ -35,6 +35,14 @@ const ProjectsProvider = (props) => {
             ],
             links: [
                 {
+                    url: "https://play.google.com/store/apps/details?id=app.vercel.bookly2",
+                    icon: "/icons/android.svg"
+                },
+                {
+                    url: "https://www.microsoft.com/store/apps/9P8HL4CVHVBM",
+                    icon: "/icons/windows.svg"
+                },
+                {
                     url: "https://github.com/CarlesRojas/bookly2",
                     icon: "/icons/github.svg"
                 }
