@@ -30,7 +30,7 @@ const ProjectsProvider = (props) => {
             icon: "/projects/bookly/icon.png",
             subtitle: "Keep track of the books you've read and want to read.",
             description: [
-                "Search for any book and add it to your library. Keep track of the books you are reading and the ones you wish read.",
+                "Search for any book and add it to your library. Keep track of the books you are reading and the ones you wish to read.",
                 "View stats like how many books you have read in total or the average number of pages you read per year."
             ],
             links: [
